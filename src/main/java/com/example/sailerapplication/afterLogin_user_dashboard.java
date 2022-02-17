@@ -10,13 +10,13 @@ import java.io.IOException;
 
 
 
-public class afterLogin {
+public class afterLogin_user_dashboard {
 
     @FXML
     private Button logout;
 
     public void userlogout(ActionEvent event ) throws IOException {
-        HelloApplication m = new HelloApplication();
+        SailerApplicaton m = new SailerApplicaton();
         m.changeScene("Gui.fxml");
     }
 

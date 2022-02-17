@@ -8,14 +8,14 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class SailerApplicaton extends Application {
 
     private static Stage stg;
     @Override
     public void start(Stage primaryStage) throws IOException {
         stg = primaryStage;
         primaryStage.setResizable(false);
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Gui.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(SailerApplicaton.class.getResource("Gui.fxml"));
         Scene root = new Scene(fxmlLoader.load(),700 ,480);
         primaryStage.setTitle("SailerApplication");
         primaryStage.setScene(root);
