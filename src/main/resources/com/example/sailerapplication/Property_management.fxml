@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="450.0" maxWidth="535.0" stylesheets="@../../../../../Desktop/ProjectMayhem/table.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sailerapplication.Property_management">
+    <children>
+        <Label prefHeight="450.0" prefWidth="535.0">
+            <font>
+                <Font name="System Bold" size="36.0" />
+            </font>
+        </Label>
+      <TableView fx:id="table" prefHeight="184.0" prefWidth="535.0">
+        <columns>
+          <TableColumn fx:id="col_name" prefWidth="77.5999755859375" text="      Name" />
+          <TableColumn fx:id="col_surname" minWidth="0.0" prefWidth="92.00006103515625" text="   Surname" />
+            <TableColumn fx:id="col_username" minWidth="0.0" prefWidth="96.0" text="   Username" />
+            <TableColumn fx:id="col_password" minWidth="0.0" prefWidth="87.99993896484375" text=" Password" />
+            <TableColumn fx:id="col_fiscal_code" minWidth="0.0" prefWidth="87.99993896484375" text="Fiscal code" />
+            <TableColumn fx:id="col_address" minWidth="0.0" prefWidth="93.5999755859375" text="   Address" />
+        </columns>
+      </TableView>
+      <TableView fx:id="table1" layoutY="190.0" prefHeight="147.0" prefWidth="535.0">
+         <columns>
+            <TableColumn fx:id="col_ID_boat" prefWidth="167.20001220703125" text="                id" />
+            <TableColumn fx:id="col_name_boat" minWidth="0.0" prefWidth="368.79998779296875" text="                               boat name" />
+         </columns>
+      </TableView>
+      <TableView fx:id="table2" layoutY="336.0" prefHeight="114.0" prefWidth="535.0">
+         <columns>
+            <TableColumn fx:id="col_Competition" prefWidth="534.2000122070312" text="                                      name" />
+         </columns>
+      </TableView>
+    </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+
+</Pane>

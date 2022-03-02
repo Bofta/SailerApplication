@@ -34,6 +34,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
@@ -56,26 +57,26 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="usernameTextField" alignment="CENTER" layoutX="551.0" layoutY="242.0" prefHeight="26.0" prefWidth="106.0" promptText="Username" style="-fx-background-color: f6f6f6;" />
-            <TextField fx:id="passwordPasswordField" alignment="CENTER" layoutX="553.0" layoutY="316.0" prefHeight="26.0" prefWidth="102.0" promptText="Password" style="-fx-background-color: f6f6f6;" />
+            <TextField fx:id="usernameTextField" alignment="CENTER" layoutX="551.0" layoutY="242.0" prefHeight="33.0" prefWidth="106.0" promptText="Username" style="-fx-background-color: f6f6f6;" />
             <ImageView fitHeight="137.0" fitWidth="134.0" layoutX="537.0" layoutY="46.0">
                <image>
-                  <Image url="@img/LOGOS-removebg-preview.png" />
+                  <Image url="@img/App_LOGO.png" />
                </image>
                <effect>
                   <ColorAdjust brightness="1.0" contrast="-1.0" />
                </effect>
             </ImageView>
-            <Button fx:id="login_button" alignment="CENTER" contentDisplay="CENTER" layoutX="572.0" layoutY="371.0" minWidth="50.0" mnemonicParsing="false" onAction="#userlogin" prefHeight="31.0" prefWidth="63.0" style="-fx-background-color: #7AD413;" text="Log In" textFill="WHITE">
+            <Button fx:id="login_button" alignment="CENTER" contentDisplay="CENTER" layoutX="572.0" layoutY="391.0" minWidth="50.0" mnemonicParsing="false" onAction="#userlogin" prefHeight="31.0" prefWidth="63.0" style="-fx-background-color: #7AD413;" text="Log In" textFill="WHITE">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Italic" size="15.0" />
                </font></Button>
             <Label fx:id="LoginButtonMessageLABEL" alignment="CENTER" layoutX="522.0" layoutY="157.0" onMouseClicked="#userlogin" prefHeight="50.0" prefWidth="175.0" textFill="WHITE" />
             <ImageView fitHeight="488.0" fitWidth="513.0" layoutX="-3.0" layoutY="-2.0" pickOnBounds="true">
                <image>
-                  <Image url="@img/lfewah.jpg" />
+                  <Image url="@img/Initial_Scene_BG.jpg" />
                </image>
             </ImageView>
+            <PasswordField fx:id="passwordPasswordField" alignment="CENTER" layoutX="551.0" layoutY="316.0" prefHeight="32.0" prefWidth="108.0" promptText="Password" style="-fx-background-color: f6f6f6;" />
          </children>
       </AnchorPane>
    </center>

@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import org.w3c.dom.events.MouseEvent;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -15,6 +16,9 @@ public class LoginController {
 
     @FXML
     private Button login_button;
+
+    @FXML
+    private Label close;
 
     @FXML
     private TextField passwordPasswordField;
@@ -29,6 +33,8 @@ public class LoginController {
     void userlogin(ActionEvent event) throws IOException {
         checkLogin();
     }
+
+
 
     private void checkLogin() throws IOException {
         SailerApplicaton m = new SailerApplicaton();
@@ -45,18 +51,19 @@ public class LoginController {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
-        String verifyLogin = "SELECT COUNT(1) FROM user WHERE username='" + usernameTextField.getText() + "' and PASSWORD='" + passwordPasswordField.getText() +  "'";
+        String verifyLogin = "SELECT COUNT(1) FROM admin WHERE username='" + usernameTextField.getText() + "' and PASSWORD='" + passwordPasswordField.getText() +  "'";
 
         try {
-
+            SailerApplicaton SailerScene = new SailerApplicaton();
             Statement statement = connectDB.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyLogin);
 
             while(queryResult.next()){
                 if (queryResult.getInt(1)==1 ) {
                     LoginButtonMessageLABEL.setText("Successful login");
+                    SailerScene.changeScene("afterLogin_admin_dashboard.fxml");
                 } else {
-                    LoginButtonMessageLABEL.setText("Invalid Credentials. ");
+                    LoginButtonMessageLABEL.setText("Invalid Credentials.");
                 }
             }
 
