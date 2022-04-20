@@ -357,58 +357,7 @@ public class Club
         this.removeMember(authorizer, oldPerson);
         this.addMember(authorizer, newPerson);
     }
-    /**
-     * This method subscribes a Person to an Activity. It only works if
-     * the Person toSubscribe is not already subscribed to the Activity toSubscribeTo.
-     * It then checks if the activity exists.
-     *
-     * @param toSubscribe   the person to subscribe
-     * @param toSubscribeTo the activity we want to subscribe the person to
-     *
-     * @return void
-     *
-     * @since 1.0
-     */
-    public void subscribeToActivity (Person toSubscribe, Activity toSubscribeTo)
-    {
-        // Check if already subscribed
-        if (Helpers.elementExists(toSubscribeTo.getRegistered(), toSubscribe))
-            return;
-        if (!Helpers.elementExists(this.activities, toSubscribeTo)) {
-            return;
-        }
-        for (int i = 0; i<this.activities.length; i++){
-            if  (this.activities[i].getName() == toSubscribeTo.getName()){
-                this.activities[i].setRegistered(Helpers.appendPerson(this.activities[i].getRegistered(), toSubscribe));
-            }
-        }
-    }
 
-    /**
-     * This method unsubscribes a Person from an Activity. It only works if the Person toUnsubscribe
-     * is not already unsubscribed from the Activity toUnsubscribeFrom.
-     * It checks if the activity exists.
-     *
-     * @param toUnsubscribe
-     * @param toUnsubscribeFrom
-     *
-     * @return void
-     *
-     */
-    public void unSubscribeFromActivity (Person toUnsubscribe, Activity toUnsubscribeFrom)
-    {
-        if (!Helpers.elementExists(this.activities, toUnsubscribeFrom)) {
-            return;
-        }
-        // Check if already subscribed
-        if (!Helpers.elementExists(toUnsubscribeFrom.getRegistered(), toUnsubscribe))
-            return;
-        for (int i = 0; i<this.activities.length; i++){
-            if  (this.activities[i].getName() == toUnsubscribeFrom.getName()){
-                this.activities[i].setRegistered(Helpers.popPerson(this.activities[i].getRegistered(), toUnsubscribe));
-            }
-        }
-    }
     /**
      * This method's return value is a complete description for a Club object.
      * It shows the Club's name and all of the Club's subscribers and activities.

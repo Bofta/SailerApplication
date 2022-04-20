@@ -9,7 +9,6 @@ package com.example.sailerapplication;
  */
 public class Personale_Circolo extends Person
 {
-
     /**
      * Empty Personale_Circolo Constructor.
      */
@@ -19,10 +18,9 @@ public class Personale_Circolo extends Person
     /**
      * Parametrized Personale_Circolo Constructor.
      */
-    public Personale_Circolo(String name, String surname, String username, String password) {
-        super(name, surname, username, password);
+    public Personale_Circolo(String name, String surname) {
+        super(name, surname);
     }
-
 
     /**
      * This method is a wrapper for the Club's addMember method.

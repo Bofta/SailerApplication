@@ -3,8 +3,8 @@ package com.example.sailerapplication;
 /**
  * Helpers contains helper methods to use with the software's arrays.
  *
- * @author      Simone Montali <simone.montali1@studenti.unipr.it>
- * @author      Filippo Botti <filippo.botti2@studenti.unipr.it>
+ * @author
+ * @author
  *
  * @version     1.0
  * @since       1.0

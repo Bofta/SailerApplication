@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import org.w3c.dom.events.MouseEvent;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -48,7 +47,7 @@ public class LoginController {
     }
 
     public void validateLogin(){
-        DatabaseConnection connectNow = new DatabaseConnection();
+        Database_CRUD_Operations connectNow = new Database_CRUD_Operations();
         Connection connectDB = connectNow.getConnection();
 
         String verifyLogin = "SELECT COUNT(1) FROM admin WHERE username='" + usernameTextField.getText() + "' and PASSWORD='" + passwordPasswordField.getText() +  "'";
@@ -61,7 +60,7 @@ public class LoginController {
             while(queryResult.next()){
                 if (queryResult.getInt(1)==1 ) {
                     LoginButtonMessageLABEL.setText("Successful login");
-                    SailerScene.changeScene("afterLogin_admin_dashboard.fxml");
+                    SailerScene.changeScene("Admin_dashboard.fxml");
                 } else {
                     LoginButtonMessageLABEL.setText("Invalid Credentials.");
                 }

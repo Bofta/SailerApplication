@@ -20,7 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class afterLogin_admin_dashboard implements Initializable {
+public class Admin_dashboard_ControllerClass implements Initializable {
 
     @FXML
     private Button logout;
@@ -34,7 +34,7 @@ public class afterLogin_admin_dashboard implements Initializable {
     @Override
     public void initialize(URL location , ResourceBundle resources) {
         try {
-            URL url = new File("C:\\Users\\bbelh\\IdeaProjects\\SailerApplication\\src\\main\\resources\\com\\example\\sailerapplication\\HHOME.fxml").toURI().toURL();
+            URL url = new File("C:\\Users\\bbelh\\IdeaProjects\\SailerApplication\\src\\main\\resources\\com\\example\\sailerapplication\\Admin_dashboardHomePage.fxml").toURI().toURL();
             Parent fxml = FXMLLoader.load(url);
             contentArea.getChildren().removeAll();
             contentArea.getChildren().setAll(fxml);
@@ -44,14 +44,14 @@ public class afterLogin_admin_dashboard implements Initializable {
     }
 
     public void home(javafx.event.ActionEvent actionEvent) throws IOException{
-        URL url = new File("C:\\Users\\bbelh\\IdeaProjects\\SailerApplication\\src\\main\\resources\\com\\example\\sailerapplication\\HHOME.fxml").toURI().toURL();
+        URL url = new File("C:\\Users\\bbelh\\IdeaProjects\\SailerApplication\\src\\main\\resources\\com\\example\\sailerapplication\\Admin_dashboardHomePage.fxml").toURI().toURL();
         Parent fxml = FXMLLoader.load(url);
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
 
     public void Property_management(javafx.event.ActionEvent actionEvent) throws IOException{
-        URL url = new File("C:\\Users\\bbelh\\IdeaProjects\\SailerApplication\\src\\main\\resources\\com\\example\\sailerapplication\\Property_management.fxml").toURI().toURL();
+        URL url = new File("C:\\Users\\bbelh\\IdeaProjects\\SailerApplication\\src\\main\\resources\\com\\example\\sailerapplication\\Members_Management.fxml").toURI().toURL();
         Parent fxml = FXMLLoader.load(url);
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
@@ -71,6 +71,13 @@ public class afterLogin_admin_dashboard implements Initializable {
         contentArea.getChildren().setAll(fxml);
     }
 
+    public void BoatsAndChallenges(javafx.event.ActionEvent actionEvent) throws IOException{
+        URL url = new File("C:\\Users\\bbelh\\IdeaProjects\\SailerApplication\\src\\main\\java\\com\\example\\sailerapplication\\BoatsAndChallenges.fxml").toURI().toURL();
+        Parent fxml = FXMLLoader.load(url);
+        contentArea.getChildren().removeAll();
+        contentArea.getChildren().setAll(fxml);
+    }
+
     public void userlogout(ActionEvent event ) throws IOException {
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -85,9 +92,7 @@ public class afterLogin_admin_dashboard implements Initializable {
             }
     }
 
-    public void close_app(ActionEvent event ) throws IOException {
-        System.exit(0);
-    }
+
 
 
 }

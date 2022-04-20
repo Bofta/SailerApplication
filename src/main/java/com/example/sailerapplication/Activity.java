@@ -12,18 +12,27 @@ import java.util.Arrays;
 
 public class Activity {
     private String name;
+    private int prize;
+    /*
     private Person[] registered;
+    */
+
     /**
      * This constructor generates an Activity object.
      * Since Activity will not be used as a class itself, we set it to protected.
      *
      * @return Activity the activity object
-     *
-     * @param cname
+     * @param name
+     * @param prize
      */
 
-    protected Activity(String cname) {
+    public Activity(String name, int prize) {
+        this.name = name;
+        this.prize = prize;
     }
+
+
+
     /**
      * This method gets the Activity name.
      *
@@ -50,79 +59,29 @@ public class Activity {
      * @return Person []
      *
      */
-    public Person[] getRegistered() {
-        return this.registered;
-    }
-    /**
-     * This method sets the Activities registered subscriptions.
-     *
-     * @param "person" [] the new subscribers
-     *
-     * @return void
-     *
-     */
-    public void setRegistered(Person[] registered) {
-        this.registered = registered;
-    }
-    /**
-     * This method adds a new subscriber to the activity.
-     *
-     * @param person is the subscriber
-     *
-     * @return void
-     *
-     */
 
-    public void addPerson(Person person) {
-        this.registered = Arrays.copyOf(this.registered, this.registered.length + 1);
-        this.registered[this.registered.length - 1] = person;
-    }
 
     /**
-     * This method deletes a subscriber.
+     * This method gets the Activity Prize.
      *
-     * @param "Person" toDelete the subscriber we want to delete
+     * @return String the Activity Prize
+     *
+     */
+    public int getPrize(){return this.prize;}
+
+
+    /**
+     * This method sets the Activities prize.
+     *
+     * @param prize the new prize amount
      *
      * @return void
      *
      */
-    public void popPerson(Person toDelete) {
-        boolean foundPerson = false;
-        for (int i = 0; i < this.registered.length; i++) {
-            if (foundPerson)
-                this.registered[i - 1] = this.registered[i];
-            if (this.registered[i].equals(toDelete))
-                foundPerson = true;
-        }
-        this.registered[this.registered.length - 1] = null;
+    public void setPrize(int prize){
+        this.prize = prize;
     }
-    /**
-     * This method compares two Activities
-     *
-     * @param "Object" object we want to compare
-     *
-     * @return boolean if the objects are equal or not
-     *
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof Activity)) {
-            return false;
-        }
-        Activity activity = (Activity) o;
-        return (name == activity.name) && java.util.Arrays.equals(registered, activity.registered);
-    }
-    /**
-     * This method returns a string describing the activity
-     *
-     * @return String the string
-     *
-     */
-    @Override
-    public String toString() {
-        return "{" + " name='" + getName() + "'" + ", registered no.='" + getRegistered().length + "'" + "}";
-    }
+
+
 
 }

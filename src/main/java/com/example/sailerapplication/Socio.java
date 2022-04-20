@@ -5,8 +5,6 @@ public class Socio extends Person {
 
         private String name;
         private String surname;
-        private String username;
-        private String password;
         private String address;
         private String fiscal_code;
         public Boat[]boats_owned;
@@ -18,23 +16,19 @@ public class Socio extends Person {
          *  Default constructor with no parameters
          */
 
-        public Socio(){
-        }
+
 
         // Constructor with parameters
-        public Socio(String name, String surname, String username, String password, String fiscal_code, String address) {
+        public Socio(String name, String surname, String fiscal_code, String address) {
             this.name = name;
             this.surname = surname;
-            this.username = username;
-            this.password = password;
             this.fiscal_code = fiscal_code;
             this.address = address;
         }
 
 
 
-
-        // Getters and Setters of Socio class
+    // Getters and Setters of Socio class
 
         public String getAddress(){
             return address;
@@ -101,7 +95,6 @@ public class Socio extends Person {
             return newArray;
         }
 
-
     @Override
     public String getName() {
         return name;
@@ -112,28 +105,8 @@ public class Socio extends Person {
         return surname;
     }
 
-    @Override
     public void setSurname(String surname) {
         this.surname = surname;
     }
 
-    @Override
-    public String getUsername() {
-        return username;
-    }
-
-    @Override
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

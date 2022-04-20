@@ -9,8 +9,9 @@ import java.sql.SQLException;
 public class DBConnector {
 
     public static Connection getConnection() throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/sailclub_db","root","");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/sailclub_db", "root", "");
         return connection;
     }
+
 
 }
