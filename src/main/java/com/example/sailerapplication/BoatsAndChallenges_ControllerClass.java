@@ -2,19 +2,58 @@ package com.example.sailerapplication;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.scene.control.TableView;
 
+import javax.swing.*;
 
-public class BoatsAndChallenges_ControllerClass implements Initializable{
+import static com.example.sailerapplication.DBConnector.getConnection;
+
+
+public class BoatsAndChallenges_ControllerClass implements Initializable {
+
+
+    @FXML
+    private TextField prize_textfield;
+
+    @FXML
+    private Button add_boat_btn;
+
+    @FXML
+    private Button add_challenge_btn;
+
+    @FXML
+    private TextField boatid_textfield;
+
+    @FXML
+    private TextField boatname_textfield;
+
+    @FXML
+    private TextField challenge_textfield;
+
+    @FXML
+    private Button delete_boat_btn;
+
+    @FXML
+    private Button delete_challenge_btn;
+
+    @FXML
+    private Button update_boat_btn;
+
+    @FXML
+    private Button update_challenge_btn;
 
     @FXML
     private TableColumn<Boat, Integer> col_ID_boat;
@@ -59,7 +98,7 @@ public class BoatsAndChallenges_ControllerClass implements Initializable{
         try {
             ResultSet rs2 = con.createStatement().executeQuery("SELECT * from challenges");
             while (rs2.next()) {
-                oblist2.add(new Activity(rs2.getString("name"),rs2.getInt(2 )));
+                oblist2.add(new Activity(rs2.getString("name"), rs2.getInt(2)));
 
             }
         } catch (SQLException e) {
@@ -78,6 +117,162 @@ public class BoatsAndChallenges_ControllerClass implements Initializable{
         table2.setItems(oblist2);
 
 
+    }
+
+    PreparedStatement pst = null;
+
+
+    /**
+     * Add boat button event handler that adds a boat with the user input informations into the database using the app.
+     *
+     * @param e
+     */
+
+    public void add_boat_function(ActionEvent e) {
+        try {
+            String sql = "INSERT INTO boat"
+                    + "(id, bname)"
+                    + "VALUES (?,?)";
+            Connection con = getConnection();
+            pst = con.prepareStatement(sql);
+            pst.setString(1, boatid_textfield.getText());
+            pst.setString(2, boatname_textfield.getText());
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Inserted successfully(Click on boats and challenges sections button to refresh the page\nand display the new changes)");
+
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+    /**
+     * Update boat button event handler that adds a boat with the user input informations into the database using the app.
+     *
+     * @param e
+     */
+
+
+    public void Update_boat_function(ActionEvent e){
+        try {
+            String sql = "UPDATE boat SET id=?, bname=? WHERE bname=?";
+            Connection con = getConnection();
+            pst = con.prepareStatement(sql);
+            pst.setString(1, boatid_textfield.getText());
+            pst.setString(2, boatname_textfield.getText());
+            pst.setString(3, boatname_textfield.getText());
+
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null , "Updated successfully(Click on boats and challenges sections button to refresh the page\nto see the new changes)");
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null , ex);
+        }
 
     }
+
+    /**
+     * Delete boat button event handler that adds a boat with the user input informations from the database using the app.
+     *
+     * @param e
+     */
+
+    public void Delete_boat_BYNAME(ActionEvent e){
+        try {
+            String sql =    "DELETE FROM boat WHERE bname=?";
+            Connection con = getConnection();
+            pst = con.prepareStatement(sql);
+            pst.setString(1, boatname_textfield.getText());
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null , "Deleted successfully(Click on boats and challenges sections button to refresh the page\nto display the new changes)");
+
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null , ex);
+        }
+    }
+
+
+    /**
+     * Add challenge button event handler that adds a challenge with the user input information into the database using the app.
+     *
+     * @param e
+     */
+
+
+    public void add_challenge_function(ActionEvent e) {
+        try {
+            String sql = "INSERT INTO challenges"
+                    + "(name, prize)"
+                    + "VALUES (?,?)";
+            Connection con = getConnection();
+            pst = con.prepareStatement(sql);
+            pst.setString(1, challenge_textfield.getText());
+            pst.setString(2, prize_textfield.getText());
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Inserted successfully(Click on boats and challenges sections button to refresh the page\nto display the new changes)");
+
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+    /**
+     * Update challenge button event handler that adds a challenge with the user input information into the database using the app.
+     *
+     * @param e
+     */
+
+
+    public void Update_challenge_function(ActionEvent e){
+        try {
+            String sql = "UPDATE challenges SET name=?, prize=? WHERE name=?";
+            Connection con = getConnection();
+            pst = con.prepareStatement(sql);
+            pst.setString(1, challenge_textfield.getText());
+            pst.setString(2, prize_textfield.getText());
+            pst.setString(3, challenge_textfield.getText());
+
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null , "Updated successfully(Click on boats and challenges sections button to refresh the page\nto see the new changes)");
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null , ex);
+        }
+
+    }
+
+    /**
+     * Remove boat button event handler that remove a challenge with the user input information from the database using the app.
+     *
+     * @param e
+     */
+
+    public void Delete_challenge_BYNAME(ActionEvent e){
+        try {
+            String sql =    "DELETE FROM challenges WHERE name=?";
+            Connection con = getConnection();
+            pst = con.prepareStatement(sql);
+            pst.setString(1, challenge_textfield.getText());
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null , "Deleted successfully(Click on boats and challenges sections button to refresh the page\nto display the new changes)");
+
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null , ex);
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+

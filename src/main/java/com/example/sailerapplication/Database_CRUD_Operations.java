@@ -3,7 +3,7 @@ package com.example.sailerapplication;
 import java.sql.*;
 import java.util.ArrayList;
 
-import static com.example.sailerapplication.DBConnector.getConnection;
+
 
 
 /**

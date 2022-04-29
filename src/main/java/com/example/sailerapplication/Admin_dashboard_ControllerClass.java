@@ -57,12 +57,14 @@ public class Admin_dashboard_ControllerClass implements Initializable {
         contentArea.getChildren().setAll(fxml);
     }
 
-    public void Clubfees(javafx.event.ActionEvent actionEvent) throws IOException{
+    public void Clubfees_FXMLFILE_LOADER_FUNCTION(javafx.event.ActionEvent actionEvent) throws IOException{
         URL url = new File("C:\\Users\\bbelh\\IdeaProjects\\SailerApplication\\src\\main\\resources\\com\\example\\sailerapplication\\Clubfees.fxml").toURI().toURL();
         Parent fxml = FXMLLoader.load(url);
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
+
+
 
     public void Notifications(javafx.event.ActionEvent actionEvent) throws IOException{
         URL url = new File("C:\\Users\\bbelh\\IdeaProjects\\SailerApplication\\src\\main\\resources\\com\\example\\sailerapplication\\Notifications.fxml").toURI().toURL();

@@ -4,6 +4,7 @@ module com.example.sailerapplication {
     requires javafx.graphics;
     requires java.sql;
     requires java.desktop;
+    requires java.mail;
 
 
     opens com.example.sailerapplication to javafx.fxml;
