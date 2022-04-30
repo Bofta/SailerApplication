@@ -2,42 +2,37 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="450.0" maxWidth="535.0" stylesheets="@../../../../../Desktop/ProjectMayhem/table.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sailerapplication.Members_ManagementControllerClass">
+<Pane maxHeight="450.0" maxWidth="535.0" stylesheets="@../../../../../Desktop/ProjectMayhem/table.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sailerapplication.Clubfees_ControllerClass">
     <children>
-        <Label prefHeight="450.0" prefWidth="535.0">
-            <font>
-                <Font name="System Bold" size="36.0" />
-            </font>
-        </Label>
-      <TableView fx:id="table" prefHeight="159.0" prefWidth="535.0">
-        <columns>
-          <TableColumn fx:id="col_name" prefWidth="103.20001220703125" text="      Name" />
-          <TableColumn fx:id="col_surname" minWidth="0.0" prefWidth="94.4000244140625" text="   Surname" />
-            <TableColumn fx:id="col_fiscal_code" minWidth="0.0" prefWidth="136.0" text="          Fiscal code" />
-            <TableColumn fx:id="col_address" minWidth="0.0" prefWidth="204.00006103515625" text="            Address" />
-        </columns>
+      <Button fx:id="membership_btn" layoutX="29.0" layoutY="367.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="135.0" text="Membership fees" />
+      <TextField fx:id="name_textfield" layoutX="120.0" layoutY="306.0" prefHeight="26.0" prefWidth="85.0" promptText="Name" />
+      <Text layoutX="46.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name      :" wrappingWidth="73.9453125" />
+      <Text fill="#5e430d" layoutX="77.0" layoutY="432.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N.B : " />
+      <Button fx:id="parkingquota_btn" layoutX="200.0" layoutY="367.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="135.0" text="Parking Quota" />
+      <Button fx:id="iscrizionegara_btn" layoutX="371.0" layoutY="367.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="135.0" text="Iscrizione Gara" />
+      <TableView fx:id="Challenge_table" layoutY="162.0" prefHeight="128.0" prefWidth="535.0">
+         <columns>
+            <TableColumn fx:id="col_challenge_clubfees" prefWidth="272.79998779296875" text="Challenge" />
+            <TableColumn fx:id="col_prize_clubfees" prefWidth="263.20001220703125" text="Prize" />
+         </columns>
       </TableView>
-      <Button fx:id="add_btn" layoutX="27.0" layoutY="347.0" mnemonicParsing="false" onAction="#add_socio_function" prefHeight="30.0" prefWidth="64.0" text="Add" />
-      <Button fx:id="delete_btn" layoutX="268.0" layoutY="347.0" mnemonicParsing="false" onAction="#Delete_Socio_BYNAME" prefHeight="30.0" prefWidth="64.0" text="Delete" />
-      <Button fx:id="update_btn" layoutX="144.0" layoutY="347.0" mnemonicParsing="false" onAction="#Update_Socio_function" prefHeight="30.0" prefWidth="64.0" text="Update" />
-      <TextField fx:id="name_textfield" layoutX="133.0" layoutY="225.0" prefHeight="26.0" prefWidth="85.0" promptText="Name" />
-      <TextField fx:id="surname_textfield" layoutX="133.0" layoutY="272.0" prefHeight="26.0" prefWidth="85.0" promptText="Surname" />
-      <TextField fx:id="fiscalcode_textfield" layoutX="334.0" layoutY="274.0" prefHeight="26.0" prefWidth="96.0" promptText="Fiscal Code" />
-      <Text layoutX="59.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name      :" wrappingWidth="73.9453125" />
-      <Text layoutX="59.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname :" wrappingWidth="73.9453125" />
-      <Text layoutX="244.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fiscal code :" />
-      <TextField fx:id="Address_textfield" layoutX="334.0" layoutY="225.0" prefHeight="26.0" prefWidth="96.0" promptText="Address" />
-      <Text layoutX="244.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address     :" wrappingWidth="73.9453125" />
-      <Text fill="#5e430d" layoutX="77.0" layoutY="432.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N.B : Delete , Update and Notify operations can be done by name." />
-      <Button fx:id="notify_btn" layoutX="382.0" layoutY="346.0" mnemonicParsing="false" onAction="#NotifyMembers_function" text="Notify members" />
+      <TextField fx:id="challenge_textfield" layoutX="341.0" layoutY="306.0" prefHeight="26.0" prefWidth="85.0" promptText="Challenge" />
+      <Text layoutX="255.0" layoutY="324.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Challenge :" />
+      <TableView fx:id="table" prefHeight="159.0" prefWidth="535.0">
+         <columns>
+            <TableColumn fx:id="col_sname" prefWidth="89.60003662109375" text="sname" />
+            <TableColumn fx:id="col_surname" minWidth="0.0" prefWidth="91.20001220703125" text="Surname" />
+            <TableColumn fx:id="col_fiscal_code" minWidth="0.0" prefWidth="107.199951171875" text="Fiscal code" />
+            <TableColumn fx:id="col_address" minWidth="0.0" prefWidth="112.0" text="Address" />
+            <TableColumn fx:id="col_CCBalance" minWidth="0.0" prefWidth="146.39996337890625" text="Credit Card balance" />
+         </columns>
+      </TableView>
     </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

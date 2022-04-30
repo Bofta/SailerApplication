@@ -98,7 +98,7 @@ public class BoatsAndChallenges_ControllerClass implements Initializable {
         try {
             ResultSet rs2 = con.createStatement().executeQuery("SELECT * from challenges");
             while (rs2.next()) {
-                oblist2.add(new Activity(rs2.getString("name"), rs2.getInt(2)));
+                oblist2.add(new Activity(rs2.getString("cname"), rs2.getInt(2)));
 
             }
         } catch (SQLException e) {
@@ -110,7 +110,7 @@ public class BoatsAndChallenges_ControllerClass implements Initializable {
         col_name_boat.setCellValueFactory(new PropertyValueFactory<>("mbname"));
 
         col_prize.setCellValueFactory(new PropertyValueFactory<>("prize"));
-        col_name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        col_name.setCellValueFactory(new PropertyValueFactory<>("cname"));
 
 
         table1.setItems(oblist1);
@@ -203,7 +203,7 @@ public class BoatsAndChallenges_ControllerClass implements Initializable {
     public void add_challenge_function(ActionEvent e) {
         try {
             String sql = "INSERT INTO challenges"
-                    + "(name, prize)"
+                    + "(cname, prize)"
                     + "VALUES (?,?)";
             Connection con = getConnection();
             pst = con.prepareStatement(sql);
@@ -227,7 +227,7 @@ public class BoatsAndChallenges_ControllerClass implements Initializable {
 
     public void Update_challenge_function(ActionEvent e){
         try {
-            String sql = "UPDATE challenges SET name=?, prize=? WHERE name=?";
+            String sql = "UPDATE challenges SET cname=?, prize=? WHERE cname=?";
             Connection con = getConnection();
             pst = con.prepareStatement(sql);
             pst.setString(1, challenge_textfield.getText());
@@ -251,7 +251,7 @@ public class BoatsAndChallenges_ControllerClass implements Initializable {
 
     public void Delete_challenge_BYNAME(ActionEvent e){
         try {
-            String sql =    "DELETE FROM challenges WHERE name=?";
+            String sql =    "DELETE FROM challenges WHERE cname=?";
             Connection con = getConnection();
             pst = con.prepareStatement(sql);
             pst.setString(1, challenge_textfield.getText());

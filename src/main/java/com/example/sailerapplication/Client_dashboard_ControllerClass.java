@@ -1,10 +1,10 @@
 package com.example.sailerapplication;
 
 
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -20,7 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class Admin_dashboard_ControllerClass implements Initializable {
+public class Client_dashboard_ControllerClass implements Initializable {
 
     @FXML
     private Button logout;
@@ -43,21 +43,21 @@ public class Admin_dashboard_ControllerClass implements Initializable {
         }
     }
 
-    public void home(javafx.event.ActionEvent actionEvent) throws IOException{
+    public void home(ActionEvent actionEvent) throws IOException{
         URL url = new File("C:\\Users\\bbelh\\IdeaProjects\\SailerApplication\\src\\main\\resources\\com\\example\\sailerapplication\\Admin_dashboardHomePage.fxml").toURI().toURL();
         Parent fxml = FXMLLoader.load(url);
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
 
-    public void Property_management(javafx.event.ActionEvent actionEvent) throws IOException{
+    public void Property_management(ActionEvent actionEvent) throws IOException{
         URL url = new File("C:\\Users\\bbelh\\IdeaProjects\\SailerApplication\\src\\main\\resources\\com\\example\\sailerapplication\\Members_Management.fxml").toURI().toURL();
         Parent fxml = FXMLLoader.load(url);
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
 
-    public void Clubfees_FXMLFILE_LOADER_FUNCTION(javafx.event.ActionEvent actionEvent) throws IOException{
+    public void Clubfees_FXMLFILE_LOADER_FUNCTION(ActionEvent actionEvent) throws IOException{
         URL url = new File("C:\\Users\\bbelh\\IdeaProjects\\SailerApplication\\src\\main\\resources\\com\\example\\sailerapplication\\Clubfees.fxml").toURI().toURL();
         Parent fxml = FXMLLoader.load(url);
         contentArea.getChildren().removeAll();
@@ -65,7 +65,7 @@ public class Admin_dashboard_ControllerClass implements Initializable {
     }
 
 
-    public void BoatsAndChallenges(javafx.event.ActionEvent actionEvent) throws IOException{
+    public void BoatsAndChallenges(ActionEvent actionEvent) throws IOException{
         URL url = new File("C:\\Users\\bbelh\\IdeaProjects\\SailerApplication\\src\\main\\java\\com\\example\\sailerapplication\\BoatsAndChallenges.fxml").toURI().toURL();
         Parent fxml = FXMLLoader.load(url);
         contentArea.getChildren().removeAll();

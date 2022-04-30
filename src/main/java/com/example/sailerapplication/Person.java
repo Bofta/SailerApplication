@@ -13,7 +13,7 @@ package com.example.sailerapplication;
  */
 public class Person
 {
-    private String name;
+    private String sname;
     private String surname;
 
 
@@ -27,14 +27,14 @@ public class Person
     /**
      * This constructor generates a Person object.
      *
-     * @param  name     the person name
+     * @param  sname     the person name
      * @param  surname  the person surname
      *
      * @return void
      *
      */
-    public Person(String name, String surname) {
-        this.name = name;
+    public Person(String sname, String surname) {
+        this.sname = sname;
         this.surname = surname;
 
     }
@@ -45,7 +45,7 @@ public class Person
      *
      */
     public String getName() {
-        return this.name;
+        return this.sname;
     }
     /**
      * This method sets the Person's name.
@@ -56,7 +56,7 @@ public class Person
      *
      */
     public void setName(String name) {
-        this.name = name;
+        this.sname = name;
     }
     /**
      * This method gets the Person's surname.

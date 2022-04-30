@@ -11,7 +11,7 @@ import java.util.Arrays;
  */
 
 public class Activity {
-    private String name;
+    private String cname;
     private int prize;
     /*
     private Person[] registered;
@@ -22,43 +22,21 @@ public class Activity {
      * Since Activity will not be used as a class itself, we set it to protected.
      *
      * @return Activity the activity object
-     * @param name
+     * @param cname
      * @param prize
      */
 
-    public Activity(String name, int prize) {
-        this.name = name;
+    public Activity(String cname, int prize) {
+        this.cname = cname;
         this.prize = prize;
     }
 
 
 
-    /**
-     * This method gets the Activity name.
-     *
-     * @return String the Activity name
-     *
-     */
-    public String getName() {
-        return this.name;
-    }
-    /**
-     * This method sets the Activity name.
-     *
-     * @param name the activity name
-     *
-     * @return void
-     *
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-    /**
-     * This method gets the Activities registered subscriptions.
-     *
-     * @return Person []
-     *
-     */
+
+
+
+
 
 
     /**
@@ -67,21 +45,29 @@ public class Activity {
      * @return String the Activity Prize
      *
      */
-    public int getPrize(){return this.prize;}
 
+    public int getPrize() {
+        return prize;
+    }
 
     /**
-     * This method sets the Activities prize.
+            * This method sets the Activities prize.
+            *
+            * @param prize the new prize amount
      *
-     * @param prize the new prize amount
+             * @return void
      *
-     * @return void
-     *
-     */
-    public void setPrize(int prize){
+             */
+    public void setPrize(int prize) {
         this.prize = prize;
     }
 
 
+    public String getCname() {
+        return cname;
+    }
 
+    public void setCname(String cname) {
+        this.cname = cname;
+    }
 }

@@ -3,13 +3,12 @@ package com.example.sailerapplication;
 
 public class Socio extends Person {
 
-        private String name;
+        private String sname;
         private String surname;
         private String address;
         private String fiscal_code;
         public Boat[]boats_owned;
-        private double CCB; // Acronym for Credit Card Balance.
-        public boolean  Quota_Associazione_Annuale_Status = false; // True if paid the fixed value of club membership (1000€) in the SGP(Servizio_Gestione_Pagamenti).
+        private Integer CCBalance; // Acronym for Credit Card Balance.
 
 
         /**
@@ -19,11 +18,18 @@ public class Socio extends Person {
 
 
         // Constructor with parameters
-        public Socio(String name, String surname, String fiscal_code, String address) {
-            this.name = name;
+        public Socio(String sname, String surname, String fiscal_code, String address , Integer CCBalance) {
+            this.sname = sname;
             this.surname = surname;
             this.fiscal_code = fiscal_code;
             this.address = address;
+            this.CCBalance = CCBalance;
+        }
+
+        public Socio(String surname , String fiscal_code , Integer CCBalance){
+            this.surname = surname;
+            this.fiscal_code = fiscal_code;
+            this.CCBalance = CCBalance;
         }
 
 
@@ -46,14 +52,7 @@ public class Socio extends Person {
             this.fiscal_code = Newfiscal_code;
         }
 
-        public double getCCB() {
-            return CCB;
-        }
 
-        public double setCCB(double NewCCB) {
-                this.CCB = NewCCB;
-            return NewCCB;
-        }
 
         public Boat[] getBoats_owned() {
             return boats_owned;
@@ -95,18 +94,29 @@ public class Socio extends Person {
             return newArray;
         }
 
-    @Override
-    public String getName() {
-        return name;
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public Integer getCCBalance() {
+        return CCBalance;
+    }
+
+    public void setCCBalance(Integer CCBalance) {
+        this.CCBalance = CCBalance;
+    }
+
+    public String getSname() {
+        return sname;
+    }
+
+    public void setSname(String sname) {
+        this.sname = sname;
     }
 
     @Override
     public String getSurname() {
         return surname;
     }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
 }
