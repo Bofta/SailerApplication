@@ -4,11 +4,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -26,8 +24,8 @@ public class SailerApplicaton extends Application {
         Database_CRUD_Operations exec_crud_ops = new Database_CRUD_Operations();
 
         exec_crud_ops.createTables();
-        exec_crud_ops.post();
-        exec_crud_ops.get();
+        exec_crud_ops.POST();
+        exec_crud_ops.GET();
 
         Scene root = new Scene(fxmlLoader.load(),700 ,480);
 

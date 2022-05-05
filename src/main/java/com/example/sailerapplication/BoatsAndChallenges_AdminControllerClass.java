@@ -22,7 +22,7 @@ import javax.swing.*;
 import static com.example.sailerapplication.DBConnector.getConnection;
 
 
-public class BoatsAndChallenges_ControllerClass implements Initializable {
+public class BoatsAndChallenges_AdminControllerClass implements Initializable {
 
 
     @FXML
@@ -61,6 +61,9 @@ public class BoatsAndChallenges_ControllerClass implements Initializable {
     @FXML
     private TableColumn<Boat, String> col_name_boat;
 
+    @FXML
+    private TableColumn<Boat, String> col_Status_boat_admin;
+
 
     @FXML
     private TableColumn<?, ?> col_name;
@@ -88,7 +91,7 @@ public class BoatsAndChallenges_ControllerClass implements Initializable {
         try {
             ResultSet rs1 = con.createStatement().executeQuery("SELECT * from boat");
             while (rs1.next()) {
-                oblist1.add(new Boat(rs1.getInt("id"), rs1.getString("bname")));
+                oblist1.add(new Boat(rs1.getInt("id"), rs1.getString("name") , rs1.getString("Status")));
             }
         } catch (
                 SQLException e) {
@@ -98,7 +101,7 @@ public class BoatsAndChallenges_ControllerClass implements Initializable {
         try {
             ResultSet rs2 = con.createStatement().executeQuery("SELECT * from challenges");
             while (rs2.next()) {
-                oblist2.add(new Activity(rs2.getString("cname"), rs2.getInt(2)));
+                oblist2.add(new Activity(rs2.getString("name"), rs2.getInt(2)));
 
             }
         } catch (SQLException e) {
@@ -107,10 +110,11 @@ public class BoatsAndChallenges_ControllerClass implements Initializable {
 
 
         col_ID_boat.setCellValueFactory(new PropertyValueFactory<>("id"));
-        col_name_boat.setCellValueFactory(new PropertyValueFactory<>("mbname"));
+        col_name_boat.setCellValueFactory(new PropertyValueFactory<>("name"));
+        col_Status_boat_admin.setCellValueFactory(new PropertyValueFactory<>("Status"));
 
         col_prize.setCellValueFactory(new PropertyValueFactory<>("prize"));
-        col_name.setCellValueFactory(new PropertyValueFactory<>("cname"));
+        col_name.setCellValueFactory(new PropertyValueFactory<>("name"));
 
 
         table1.setItems(oblist1);
@@ -131,7 +135,7 @@ public class BoatsAndChallenges_ControllerClass implements Initializable {
     public void add_boat_function(ActionEvent e) {
         try {
             String sql = "INSERT INTO boat"
-                    + "(id, bname)"
+                    + "(id, name)"
                     + "VALUES (?,?)";
             Connection con = getConnection();
             pst = con.prepareStatement(sql);
@@ -155,7 +159,7 @@ public class BoatsAndChallenges_ControllerClass implements Initializable {
 
     public void Update_boat_function(ActionEvent e){
         try {
-            String sql = "UPDATE boat SET id=?, bname=? WHERE bname=?";
+            String sql = "UPDATE boat SET id=?, name=? WHERE name=?";
             Connection con = getConnection();
             pst = con.prepareStatement(sql);
             pst.setString(1, boatid_textfield.getText());
@@ -179,7 +183,7 @@ public class BoatsAndChallenges_ControllerClass implements Initializable {
 
     public void Delete_boat_BYNAME(ActionEvent e){
         try {
-            String sql =    "DELETE FROM boat WHERE bname=?";
+            String sql =    "DELETE FROM boat WHERE name=?";
             Connection con = getConnection();
             pst = con.prepareStatement(sql);
             pst.setString(1, boatname_textfield.getText());
@@ -203,7 +207,7 @@ public class BoatsAndChallenges_ControllerClass implements Initializable {
     public void add_challenge_function(ActionEvent e) {
         try {
             String sql = "INSERT INTO challenges"
-                    + "(cname, prize)"
+                    + "(name, prize)"
                     + "VALUES (?,?)";
             Connection con = getConnection();
             pst = con.prepareStatement(sql);
@@ -227,7 +231,7 @@ public class BoatsAndChallenges_ControllerClass implements Initializable {
 
     public void Update_challenge_function(ActionEvent e){
         try {
-            String sql = "UPDATE challenges SET cname=?, prize=? WHERE cname=?";
+            String sql = "UPDATE challenges SET name=?, prize=? WHERE name=?";
             Connection con = getConnection();
             pst = con.prepareStatement(sql);
             pst.setString(1, challenge_textfield.getText());
@@ -251,7 +255,7 @@ public class BoatsAndChallenges_ControllerClass implements Initializable {
 
     public void Delete_challenge_BYNAME(ActionEvent e){
         try {
-            String sql =    "DELETE FROM challenges WHERE cname=?";
+            String sql =    "DELETE FROM challenges WHERE name=?";
             Connection con = getConnection();
             pst = con.prepareStatement(sql);
             pst.setString(1, challenge_textfield.getText());

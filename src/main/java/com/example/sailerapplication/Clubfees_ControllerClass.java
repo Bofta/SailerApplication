@@ -80,7 +80,7 @@ public class Clubfees_ControllerClass implements Initializable{
         try {
             ResultSet rs = con.createStatement().executeQuery("select * from user");
             while (rs.next()) {
-                oblist4.add(new Socio(rs.getString("sname"), rs.getString("surname"), rs.getString("fiscal_code"), rs.getString("address"), rs.getInt("CCBalance")));
+                oblist4.add(new Socio(rs.getString("name"), rs.getString("surname"), rs.getString("fiscal_code"), rs.getString("address"), rs.getInt("CCBalance")));
 
             }
 
@@ -88,7 +88,7 @@ public class Clubfees_ControllerClass implements Initializable{
             e.printStackTrace();
         }
 
-        col_sname.setCellValueFactory(new PropertyValueFactory<>("sname"));
+        col_sname.setCellValueFactory(new PropertyValueFactory<>("name"));
         col_surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
         col_address.setCellValueFactory(new PropertyValueFactory<>("address"));
         col_fiscal_code.setCellValueFactory(new PropertyValueFactory<>("fiscal_code"));
@@ -97,7 +97,7 @@ public class Clubfees_ControllerClass implements Initializable{
 
 
         col_prize_clubfees.setCellValueFactory(new PropertyValueFactory<>("prize"));
-        col_challenge_clubfees.setCellValueFactory(new PropertyValueFactory<>("cname"));
+        col_challenge_clubfees.setCellValueFactory(new PropertyValueFactory<>("name"));
 
 
         Challenge_table.setItems(oblist3);

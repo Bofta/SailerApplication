@@ -20,7 +20,7 @@ public class Database_CRUD_Operations {
         String databaseName = "sailclub_db";
         String databaseUser = "root";
         String databasePassword = "";
-        String url = "jdbc:mysql://localhost/" + databaseName;
+        String url = "jdbc:mysql://localhost:3306/" + databaseName;
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -41,10 +41,44 @@ public class Database_CRUD_Operations {
     public void createTables(){
         try {
             Connection con = getConnection();
-            PreparedStatement create_table_admin = con.prepareStatement("CREATE TABLE IF NOT EXISTS admin(id int(11) NOT NULL AUTO_INCREMENT, username varchar(32) , password varchar(32) , PRIMARY KEY(id))");
-            PreparedStatement create_table_user = con.prepareStatement("CREATE TABLE IF NOT EXISTS user(id int(11) NOT NULL AUTO_INCREMENT,name char(32) , surname char(32) , username varchar(32) , password varchar(32) , address varchar(32) , fiscal_code varchar(32) , PRIMARY KEY(id))");
-            PreparedStatement create_table_challenges = con.prepareStatement("CREATE TABLE IF NOT EXISTS challenges(cname varchar(32) NOT NULL , prize int(11) , PRIMARY KEY(cname))");
-            PreparedStatement create_table_boat = con.prepareStatement("CREATE TABLE IF NOT EXISTS boat(id int(10) NOT NULL AUTO_INCREMENT, bname varchar(32), PRIMARY KEY(id))");
+
+            String drop_admin = "drop table if exists admin";
+            String drop_user = "drop table if exists user";
+            String drop_boat = "drop table if exists boat";
+            String drop_challenges = "drop table if exists challenges";
+
+
+            Statement stmt = con.createStatement();
+
+            stmt.executeUpdate(drop_admin);
+            stmt.executeUpdate(drop_user);
+            stmt.executeUpdate(drop_boat);
+            stmt.executeUpdate(drop_challenges);
+
+
+            PreparedStatement create_table_admin = con.prepareStatement("CREATE TABLE IF NOT EXISTS admin(id int(11) NOT NULL AUTO_INCREMENT" +
+                    ", username varchar(32) NOT NULL" +
+                    ", password varchar(32) NOT NULL" +
+                    ", PRIMARY KEY(id))");
+
+            PreparedStatement create_table_user = con.prepareStatement("CREATE TABLE IF NOT EXISTS user(name char(32) NOT NULL" +
+                    ", surname char(32) NOT NULL" +
+                    ", username varchar(32) NOT NULL" +
+                    ", password varchar(32) NOT NULL" +
+                    ", address varchar(32) NOT NULL" +
+                    ", fiscal_code varchar(32) NOT NULL" +
+                    ", CCBalance double NOT NULL" +
+                    ", PRIMARY KEY(name))");
+
+            PreparedStatement create_table_challenges = con.prepareStatement("CREATE TABLE IF NOT EXISTS challenges(name varchar(32) NOT NULL " +
+                    ", prize int(11) not null" +
+                    ", PRIMARY KEY(name))");
+
+            PreparedStatement create_table_boat = con.prepareStatement("CREATE TABLE IF NOT EXISTS boat(id int(10) NOT NULL AUTO_INCREMENT" +
+                    ", name varchar(32) NOT NULL" +
+                    ", Status char(10) NOT NULL" +
+                    ", PRIMARY KEY(id))");
+
             create_table_admin.executeUpdate();
             create_table_user.executeUpdate();
             create_table_challenges.executeUpdate();
@@ -61,7 +95,7 @@ public class Database_CRUD_Operations {
      * METHOD FOR POPULATING THE TABLES IN THE DATABASE IF THEY ARENT ALREADY POPULATED
      */
 
-    public void post(){
+    public void POST(){
 
 
         /**
@@ -69,9 +103,8 @@ public class Database_CRUD_Operations {
          */
 
         try {
-
             Connection con = getConnection();
-            PreparedStatement posted_admin1 = con.prepareStatement("INSERT INTO admin (id , username , password ) VALUES ('1','root', 'root')");
+            PreparedStatement posted_admin1 = con.prepareStatement("INSERT INTO admin (username , password ) VALUES ('root', 'root')");
             posted_admin1.executeUpdate();
 
         } catch (SQLException throwables) {
@@ -85,9 +118,14 @@ public class Database_CRUD_Operations {
         try {
             Connection con = getConnection();
 
-            PreparedStatement posted_user1 = con.prepareStatement("INSERT INTO user (id , name, surname , username , password , address , fiscal_code) VALUES ('1','montasser', 'ben rejeb', 'devops', 'opsdev', 'parma', 'pchtaahched9784')");
-            PreparedStatement posted_user2 = con.prepareStatement("INSERT INTO user (id , name, surname , username , password , address , fiscal_code) VALUES ('2','Mohamed', 'Touati', 'Mohamed93', 'Jamaica1993$', 'Via pazzini 15', 'MMT93DH02J06Z352')");
-            PreparedStatement posted_user3 = con.prepareStatement("INSERT INTO user (id , name, surname , username , password , address , fiscal_code) VALUES ('3','Mohammed', 'Achref Touil', 'Mohamed93', 'Achref-1234', 'Via Mazzini,Parigi,Francia', 'TLMO99ZS07HL29')");
+            PreparedStatement posted_user1 = con.prepareStatement("INSERT INTO user (name, surname , username , password , address , fiscal_code , CCBalance)" +
+                                                                                " VALUES ('montasser', 'ben rejeb', 'devops', 'opsdev', 'montassar367@gmail.com', 'XXXX','5000')");
+
+            PreparedStatement posted_user2 = con.prepareStatement("INSERT INTO user (name, surname , username , password , address , fiscal_code, CCBalance) " +
+                                                                                " VALUES ('Mohamed', 'Touati', 'Mohamed93', 'Jamaica1993$', 'Achref15@gmail.com', 'YYYY','5000')");
+
+            PreparedStatement posted_user3 = con.prepareStatement("INSERT INTO user (name, surname , username , password , address , fiscal_code, CCBalance)" +
+                                                                                " VALUES ('Mohammed', 'Achref Touil', 'Mohamed93', 'Achref-1234', 'Hama87@gmail.com', 'ZZZZ','5000')");
             posted_user1.executeUpdate();
             posted_user2.executeUpdate();
             posted_user3.executeUpdate();
@@ -103,10 +141,12 @@ public class Database_CRUD_Operations {
          */
         try {
             Connection con = getConnection();
-            PreparedStatement posted_challenge1 = con.prepareStatement("INSERT INTO challenges (cname , prize) VALUES ('RORCCaribbean','10000')");
-            PreparedStatement posted_challenge2 = con.prepareStatement("INSERT INTO challenges (cname , prize) VALUES ('Shell Cup 2022','2222')");
-            posted_challenge1.executeUpdate();
-            posted_challenge2.executeUpdate();
+            PreparedStatement posted_Challenge1 = con.prepareStatement("INSERT INTO challenges (name , prize) VALUES ('RORCCaribbean','10000')");
+            PreparedStatement posted_Challenge2 = con.prepareStatement("INSERT INTO challenges (name , prize) VALUES ('Shell Cup 2022','20000')");
+            PreparedStatement posted_Challenge3 = con.prepareStatement("INSERT INTO challenges (name , prize) VALUES ('GrandPrize ','100000')");
+            posted_Challenge1.executeUpdate();
+            posted_Challenge2.executeUpdate();
+            posted_Challenge3.executeUpdate();
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -117,17 +157,19 @@ public class Database_CRUD_Operations {
          */
         try {
             Connection con = getConnection();
-            PreparedStatement posted_boat1 = con.prepareStatement("INSERT INTO boat (id , bname) VALUES ('1','TANIT')");
-            PreparedStatement posted_boat2 = con.prepareStatement("INSERT INTO boat (id , bname) VALUES ('2','CARTHAGE')");
-            posted_boat1.executeUpdate();
-            posted_boat2.executeUpdate();
+            PreparedStatement posted_Boat1 = con.prepareStatement("INSERT INTO boat (id, name, Status) VALUES ('1','TANIT','AVAILABLE')");
+            PreparedStatement posted_Boat2 = con.prepareStatement("INSERT INTO boat (id, name, Status) VALUES ('2','CARTHAGE','AVAILABLE')");
+            PreparedStatement posted_Boat3 = con.prepareStatement("INSERT INTO boat (id, name, Status) VALUES ('3','Grande Navi Veloci','AVAILABLE')");
+            posted_Boat1.executeUpdate();
+            posted_Boat2.executeUpdate();
+            posted_Boat3.executeUpdate();
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
         finally {
-            System.out.println("TABLES 'admin' , 'user' , 'challenges' , 'boat' have been successfully populated\nif they aren't already!");
+            System.out.println("TABLES 'admin' , 'user' , 'challenges' , 'boat' have been successfully populated!\n");
         }
 
     }
@@ -136,27 +178,33 @@ public class Database_CRUD_Operations {
      * METHOD FOR SELECTING DATA FROM TABLES IN THE DATABASE
      */
 
-    public ArrayList<String> get() {
+    public ArrayList<String> GET() {
         try{
             Connection con = getConnection();
-            PreparedStatement statement = con.prepareStatement("SELECT * FROM user");
+            PreparedStatement strSelect = con.prepareStatement("SELECT name, surname, username ,  address, fiscal_code , CCBalance FROM user");
+            System.out.println("The SQL statement is: " + strSelect + "\n");
+            ResultSet rset = strSelect.executeQuery();
 
-            ResultSet result = statement.executeQuery();
+            ArrayList<String> array = new ArrayList<>();
+            int rowCount = 0;
+            while(rset.next()){
+                String name     = rset.getString("name");
+                String surname  = rset.getString("surname");
+                String username = rset.getString("username");
+                String address  = rset.getString("address");
+                String fiscal_code = rset.getString("fiscal_code");
+                String CCBalance = rset.getString("CCBalance");
 
-            ArrayList<String> array = new ArrayList<String>();
-            while(result.next()){
-                System.out.println(result.getString("id"));
-                System.out.println(result.getString("name"));
-                System.out.println(result.getString("surname"));
-                System.out.println(result.getString("username"));
-                System.out.println(result.getString("password"));
 
-                array.add(result.getString("name"));
+                rowCount++;
+                String displayMessage = name + ", " + surname + ", " + username + ", " + address + ", " + fiscal_code + ", " + CCBalance;
+
+                array.add(displayMessage);
             }
-            System.out.println("The requested records have been selected");
+            System.out.println("Total numbers of selected records =" + rowCount);
             return array;
-        } catch(Exception e){
-            System.out.println(e);
+        } catch(SQLException e){
+            e.printStackTrace();
             return null;
         }
     }

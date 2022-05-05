@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane prefHeight="450.0" prefWidth="636.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sailerapplication.Admin_HomePageControllerClass">
+    <children>
+        <Label prefHeight="450.0" prefWidth="535.0" textFill="black">
+            <font>
+                <Font name="System Bold" size="36.0" />
+            </font>
+        </Label>
+      <Text layoutX="260.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font name="Consolas" size="23.0" />
+         </font>
+      </Text>
+      <Text layoutX="132.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage information about your boats, challenges and pending payments" wrappingWidth="378.8229446411133">
+         <font>
+            <Font name="Candara Light Italic" size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="132.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Keep track of membership, storage and race registration payments and notifications" wrappingWidth="348.4229507446287">
+         <font>
+            <Font name="Candara Light Italic" size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="14.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="As an member of our club and through this dashboard you can :  " wrappingWidth="525.6478576660156">
+         <font>
+            <Font name="Candara Light" size="27.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="69.0" fitWidth="134.0" layoutX="30.0" layoutY="232.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="69.0" fitWidth="62.0" layoutX="34.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/credit-control-100.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="75.0" fitWidth="69.0" layoutX="30.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/admin-settings-100.png" />
+         </image>
+      </ImageView>
+    </children>
+
+</Pane>

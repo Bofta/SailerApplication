@@ -19,7 +19,7 @@
         </Label>
       <TableView fx:id="table" prefHeight="159.0" prefWidth="535.0">
         <columns>
-          <TableColumn fx:id="col_sname" prefWidth="89.60003662109375" text="sname" />
+          <TableColumn fx:id="col_sname" prefWidth="89.60003662109375" text="Name" />
           <TableColumn fx:id="col_surname" minWidth="0.0" prefWidth="91.20001220703125" text="Surname" />
             <TableColumn fx:id="col_fiscal_code" minWidth="0.0" prefWidth="107.199951171875" text="Fiscal code" />
             <TableColumn fx:id="col_address" minWidth="0.0" prefWidth="112.0" text="Address" />

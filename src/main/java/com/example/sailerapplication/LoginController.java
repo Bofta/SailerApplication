@@ -50,15 +50,21 @@ public class LoginController {
         Database_CRUD_Operations connectNow = new Database_CRUD_Operations();
         Connection connectDB = connectNow.getConnection();
 
-        String verifyLogin = "SELECT COUNT(1) FROM admin WHERE username='" + usernameTextField.getText() + "' and PASSWORD='" + passwordPasswordField.getText() +  "'";
+        String verifyLogin_ADMIN = "SELECT COUNT(1) FROM admin WHERE username='" + usernameTextField.getText() + "' and PASSWORD='" + passwordPasswordField.getText() +  "'";
+
+        /**
+         * ADMIN AND USER LOGIN VERIFICATION
+         *
+         */
 
         try {
             SailerApplicaton SailerScene = new SailerApplicaton();
             Statement statement = connectDB.createStatement();
-            ResultSet queryResult = statement.executeQuery(verifyLogin);
+            ResultSet queryResult1 = statement.executeQuery(verifyLogin_ADMIN);
 
-            while(queryResult.next()){
-                if (queryResult.getInt(1)==1 ) {
+
+            while(queryResult1.next()){
+                if (queryResult1.getInt(1)==1 ) {
                     LoginButtonMessageLABEL.setText("Successful login");
                     SailerScene.changeScene("Admin_dashboard.fxml");
                 } else {
@@ -70,6 +76,30 @@ public class LoginController {
             e.printStackTrace();
             e.getCause();
         }
+
+        String verifyLogin_USER = "SELECT COUNT(1) FROM user WHERE username='" + usernameTextField.getText() + "' and PASSWORD='" + passwordPasswordField.getText() +  "'";
+
+
+        try {
+            SailerApplicaton SailerScene = new SailerApplicaton();
+            Statement statement = connectDB.createStatement();
+            ResultSet queryResult2 = statement.executeQuery(verifyLogin_USER);
+
+
+            while(queryResult2.next()){
+                if (queryResult2.getInt(1)==1 ) {
+                    LoginButtonMessageLABEL.setText("Successful login");
+                    SailerScene.changeScene("Client_dashboard.fxml");
+                } else {
+                    LoginButtonMessageLABEL.setText("Invalid Credentials.");
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+
 
     }
 

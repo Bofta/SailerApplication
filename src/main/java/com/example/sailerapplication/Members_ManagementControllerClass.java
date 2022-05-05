@@ -17,7 +17,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import javax.mail.*;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
@@ -89,7 +88,7 @@ public class Members_ManagementControllerClass implements Initializable {
         try {
             ResultSet rs = con.createStatement().executeQuery("select * from user");
             while (rs.next()) {
-                oblist.add(new Socio(rs.getString("sname"), rs.getString("surname"), rs.getString("fiscal_code"), rs.getString("address"), rs.getInt("CCBalance")));
+                oblist.add(new Socio(rs.getString("name"), rs.getString("surname"), rs.getString("fiscal_code"), rs.getString("address"), rs.getInt("CCBalance")));
 
             }
 
@@ -97,7 +96,7 @@ public class Members_ManagementControllerClass implements Initializable {
             e.printStackTrace();
         }
 
-        col_sname.setCellValueFactory(new PropertyValueFactory<>("sname"));
+        col_sname.setCellValueFactory(new PropertyValueFactory<>("name"));
         col_surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
         col_address.setCellValueFactory(new PropertyValueFactory<>("address"));
         col_fiscal_code.setCellValueFactory(new PropertyValueFactory<>("fiscal_code"));
@@ -119,7 +118,7 @@ public class Members_ManagementControllerClass implements Initializable {
     public void add_socio_function(ActionEvent e) {
         try {
             String sql = "INSERT INTO user"
-                    + "(sname, surname, address, fiscal_code, CCBalance)"
+                    + "(name, surname, address, fiscal_code, CCBalance)"
                     + "VALUES (?,?,?,?,?)";
             Connection con = getConnection();
             pst = con.prepareStatement(sql);
@@ -140,7 +139,7 @@ public class Members_ManagementControllerClass implements Initializable {
 
     public void Delete_Socio_BYNAME(ActionEvent e) {
         try {
-            String sql = "DELETE FROM `user` WHERE sname=?";
+            String sql = "DELETE FROM `user` WHERE name=?";
             Connection con = getConnection();
             pst = con.prepareStatement(sql);
             pst.setString(1, name_textfield.getText());
@@ -156,7 +155,7 @@ public class Members_ManagementControllerClass implements Initializable {
 
     public void Update_Socio_function(ActionEvent e) {
         try {
-            String sql = "UPDATE user SET sname=?,surname=?,address=?,fiscal_code=?,CCBalance=? WHERE sname=?";
+            String sql = "UPDATE user SET name=?,surname=?,address=?,fiscal_code=?,CCBalance=? WHERE name=?";
             Connection con = getConnection();
             pst = con.prepareStatement(sql);
             pst.setString(1, name_textfield.getText());

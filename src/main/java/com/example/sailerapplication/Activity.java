@@ -11,7 +11,7 @@ import java.util.Arrays;
  */
 
 public class Activity {
-    private String cname;
+    private String name;
     private int prize;
     /*
     private Person[] registered;
@@ -22,12 +22,12 @@ public class Activity {
      * Since Activity will not be used as a class itself, we set it to protected.
      *
      * @return Activity the activity object
-     * @param cname
+     * @param name
      * @param prize
      */
 
-    public Activity(String cname, int prize) {
-        this.cname = cname;
+    public Activity(String name, int prize) {
+        this.name = name;
         this.prize = prize;
     }
 
@@ -63,11 +63,11 @@ public class Activity {
     }
 
 
-    public String getCname() {
-        return cname;
+    public String getName() {
+        return name;
     }
 
-    public void setCname(String cname) {
-        this.cname = cname;
+    public void setName(String name) {
+        this.name = name;
     }
 }

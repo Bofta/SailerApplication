@@ -3,7 +3,8 @@ package com.example.sailerapplication;
 
 public class Boat {
     private int id;
-    private String mbname;
+    private String name;
+    private String Status;
 
     /**
      *  False by default
@@ -12,9 +13,10 @@ public class Boat {
     public boolean Quota_imbarcazione_boat_status = false;
 
 
-    public Boat(int id , String mbname) {
+    public Boat(int id , String name , String Status) {
         this.id = id;
-        this.mbname = mbname;
+        this.name = name;
+        this.Status = Status;
     }
 
     /**
@@ -29,12 +31,19 @@ public class Boat {
         this.id = id;
     }
 
-
-    public String getMbname() {
-        return mbname;
+    public String getStatus() {
+        return Status;
     }
 
-    public void setMbname(String mbname) {
-        this.mbname = mbname;
+    public void setStatus(String status) {
+        Status = status;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

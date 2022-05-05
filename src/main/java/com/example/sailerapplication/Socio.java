@@ -3,12 +3,13 @@ package com.example.sailerapplication;
 
 public class Socio extends Person {
 
-        private String sname;
+        private String name;
         private String surname;
         private String address;
         private String fiscal_code;
-        public Boat[]boats_owned;
-        private Integer CCBalance; // Acronym for Credit Card Balance.
+        private Boat[] boats_owned;
+        private double CCBalance; // Acronym for Credit Card Balance.
+
 
 
         /**
@@ -18,8 +19,8 @@ public class Socio extends Person {
 
 
         // Constructor with parameters
-        public Socio(String sname, String surname, String fiscal_code, String address , Integer CCBalance) {
-            this.sname = sname;
+        public Socio(String name, String surname, String fiscal_code, String address , Integer CCBalance) {
+            this.name = name;
             this.surname = surname;
             this.fiscal_code = fiscal_code;
             this.address = address;
@@ -53,7 +54,7 @@ public class Socio extends Person {
         }
 
 
-
+        /**
         public Boat[] getBoats_owned() {
             return boats_owned;
         }
@@ -99,24 +100,26 @@ public class Socio extends Person {
         this.surname = surname;
     }
 
-    public Integer getCCBalance() {
+    public double getCCBalance() {
         return CCBalance;
     }
 
-    public void setCCBalance(Integer CCBalance) {
+    public void setCCBalance(double CCBalance) {
         this.CCBalance = CCBalance;
-    }
-
-    public String getSname() {
-        return sname;
-    }
-
-    public void setSname(String sname) {
-        this.sname = sname;
     }
 
     @Override
     public String getSurname() {
         return surname;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
     }
 }
