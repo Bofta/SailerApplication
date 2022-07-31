@@ -32,33 +32,28 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.ColorAdjust?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="441.0" style="-fx-background-color: #bef4ff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sailerapplication.LoginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #bef4ff;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sailerapplication.LoginController">
    <center>
-      <AnchorPane opacity="0.84" prefHeight="487.0" prefWidth="692.0" style="-fx-background-color: #1564BF;" BorderPane.alignment="CENTER">
+      <AnchorPane opacity="0.84" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #1564BF;" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" layoutX="552.0" layoutY="201.0" prefHeight="30.0" prefWidth="104.0" text="Username" textFill="#151515">
+            <Label alignment="CENTER" layoutX="619.0" layoutY="238.0" prefHeight="30.0" prefWidth="104.0" text="Username" textFill="#151515">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="522.0" layoutY="279.0" prefHeight="30.0" prefWidth="164.0" text="Password" textFill="#151515">
+            <Label alignment="CENTER" layoutX="589.0" layoutY="316.0" prefHeight="30.0" prefWidth="164.0" text="Password" textFill="#151515">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="usernameTextField" alignment="CENTER" layoutX="551.0" layoutY="242.0" prefHeight="33.0" prefWidth="106.0" promptText="Username" style="-fx-background-color: f6f6f6;" />
-            <ImageView fitHeight="137.0" fitWidth="134.0" layoutX="537.0" layoutY="46.0">
+            <TextField fx:id="usernameTextField" alignment="CENTER" layoutX="618.0" layoutY="279.0" prefHeight="33.0" prefWidth="106.0" promptText="Username" style="-fx-background-color: f6f6f6;" />
+            <ImageView fitHeight="137.0" fitWidth="134.0" layoutX="604.0" layoutY="52.0">
                <image>
                   <Image url="@img/App_LOGO.png" />
                </image>
@@ -66,17 +61,17 @@
                   <ColorAdjust brightness="1.0" contrast="-1.0" />
                </effect>
             </ImageView>
-            <Button fx:id="login_button" alignment="CENTER" contentDisplay="CENTER" layoutX="572.0" layoutY="391.0" minWidth="50.0" mnemonicParsing="false" onAction="#userlogin" prefHeight="31.0" prefWidth="63.0" style="-fx-background-color: #7AD413;" text="Log In" textFill="WHITE">
+            <Button fx:id="login_button" alignment="CENTER" contentDisplay="CENTER" layoutX="640.0" layoutY="435.0" minWidth="50.0" mnemonicParsing="false" onAction="#userlogin" prefHeight="31.0" prefWidth="63.0" style="-fx-background-color: #7AD413;" text="Log In" textFill="WHITE">
                <font>
                   <Font name="System Italic" size="15.0" />
                </font></Button>
-            <Label fx:id="LoginButtonMessageLABEL" alignment="CENTER" layoutX="522.0" layoutY="157.0" onMouseClicked="#userlogin" prefHeight="50.0" prefWidth="175.0" textFill="WHITE" />
-            <ImageView fitHeight="488.0" fitWidth="513.0" layoutX="-3.0" layoutY="-2.0" pickOnBounds="true">
+            <Label fx:id="LoginButtonMessageLABEL" alignment="CENTER" layoutX="583.0" layoutY="175.0" onMouseClicked="#userlogin" prefHeight="50.0" prefWidth="175.0" textFill="WHITE" />
+            <ImageView fitHeight="610.0" fitWidth="546.0" layoutX="-3.0" layoutY="-5.0" pickOnBounds="true">
                <image>
                   <Image url="@img/Initial_Scene_BG.jpg" />
                </image>
             </ImageView>
-            <PasswordField fx:id="passwordPasswordField" alignment="CENTER" layoutX="551.0" layoutY="316.0" prefHeight="32.0" prefWidth="108.0" promptText="Password" style="-fx-background-color: f6f6f6;" />
+            <PasswordField fx:id="passwordPasswordField" alignment="CENTER" layoutX="618.0" layoutY="353.0" prefHeight="32.0" prefWidth="108.0" promptText="Password" style="-fx-background-color: f6f6f6;" />
          </children>
       </AnchorPane>
    </center>

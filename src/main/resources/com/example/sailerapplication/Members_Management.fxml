@@ -10,37 +10,47 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="450.0" maxWidth="535.0" stylesheets="@../../../../../Desktop/ProjectMayhem/table.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sailerapplication.Members_ManagementControllerClass">
+<Pane maxHeight="600.0" maxWidth="800.0" stylesheets="@../../../../../Desktop/ProjectMayhem/table.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sailerapplication.Members_ManagementControllerClass">
     <children>
-        <Label prefHeight="450.0" prefWidth="535.0">
+        <Label layoutX="3.0" layoutY="-1.0" prefHeight="550.0" prefWidth="722.0">
             <font>
                 <Font name="System Bold" size="36.0" />
             </font>
         </Label>
-      <TableView fx:id="table" prefHeight="159.0" prefWidth="535.0">
+      <TableView fx:id="table" prefHeight="231.0" prefWidth="800.0">
         <columns>
-          <TableColumn fx:id="col_sname" prefWidth="89.60003662109375" text="Name" />
-          <TableColumn fx:id="col_surname" minWidth="0.0" prefWidth="91.20001220703125" text="Surname" />
-            <TableColumn fx:id="col_fiscal_code" minWidth="0.0" prefWidth="107.199951171875" text="Fiscal code" />
-            <TableColumn fx:id="col_address" minWidth="0.0" prefWidth="112.0" text="Address" />
-            <TableColumn fx:id="col_CCBalance" minWidth="0.0" prefWidth="146.39996337890625" text="Credit Card balance" />
+          <TableColumn fx:id="col_sname" prefWidth="89.60003966093063" text="Name" />
+          <TableColumn fx:id="col_surname" minWidth="0.0" prefWidth="89.60000610351562" text="Surname" />
+            <TableColumn fx:id="col_username" minWidth="0.0" prefWidth="103.19993591308594" text="username" />
+            <TableColumn fx:id="col_password" minWidth="0.0" prefWidth="80.00006103515625" text="password" />
+            <TableColumn fx:id="col_fiscal_code" minWidth="0.0" prefWidth="88.800048828125" text="Fiscal code" />
+            <TableColumn fx:id="col_address" minWidth="0.0" prefWidth="75.20001220703125" text="Address" />
+            <TableColumn fx:id="col_CCBalance" minWidth="0.0" prefWidth="53.59991455078125" text="Credit Card balance" />
+            <TableColumn fx:id="col_membership" minWidth="0.0" prefWidth="91.199951171875" text="Membership_status" />
         </columns>
       </TableView>
-      <Button fx:id="add_btn" layoutX="35.0" layoutY="351.0" mnemonicParsing="false" onAction="#add_socio_function" prefHeight="30.0" prefWidth="64.0" text="Add" />
-      <Button fx:id="delete_btn" layoutX="276.0" layoutY="351.0" mnemonicParsing="false" onAction="#Delete_Socio_BYNAME" prefHeight="30.0" prefWidth="64.0" text="Delete" />
-      <Button fx:id="update_btn" layoutX="152.0" layoutY="351.0" mnemonicParsing="false" onAction="#Update_Socio_function" prefHeight="30.0" prefWidth="64.0" text="Update" />
-      <TextField fx:id="name_textfield" layoutX="96.0" layoutY="195.0" prefHeight="26.0" prefWidth="85.0" promptText="Name" />
-      <TextField fx:id="surname_textfield" layoutX="96.0" layoutY="242.0" prefHeight="26.0" prefWidth="85.0" promptText="Surname" />
-      <TextField fx:id="fiscalcode_textfield" layoutX="350.0" layoutY="198.0" prefHeight="26.0" prefWidth="96.0" promptText="Fiscal Code" />
-      <Text layoutX="22.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name       :" wrappingWidth="73.9453125" />
-      <Text layoutX="22.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname  :" wrappingWidth="73.9453125" />
-      <Text layoutX="232.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fiscal code :" />
-      <TextField fx:id="Address_textfield" layoutX="95.0" layoutY="286.0" prefHeight="26.0" prefWidth="85.0" promptText="Address" />
-      <Text layoutX="22.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address   :" wrappingWidth="73.9453125" />
-      <Text fill="#5e430d" layoutX="77.0" layoutY="432.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N.B : Delete , Update and Notify operations can be done by name." />
-      <Button fx:id="notify_btn" layoutX="390.0" layoutY="350.0" mnemonicParsing="false" onAction="#NotifyMembers_function" prefHeight="30.0" prefWidth="109.0" text="Notify members" />
-      <TextField fx:id="CCBalance_textfield" layoutX="350.0" layoutY="244.0" prefHeight="26.0" prefWidth="96.0" promptText="Credit Card Balance" />
-      <Text layoutX="210.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Credit Card Balance :" />
+      <Button fx:id="add_btn" layoutX="79.0" layoutY="501.0" mnemonicParsing="false" onAction="#add_socio_function" prefHeight="30.0" prefWidth="64.0" text="Add" />
+      <Button fx:id="delete_btn" layoutX="320.0" layoutY="501.0" mnemonicParsing="false" onAction="#Delete_Socio_BYNAME" prefHeight="30.0" prefWidth="64.0" text="Delete" />
+      <Button fx:id="update_btn" layoutX="196.0" layoutY="501.0" mnemonicParsing="false" onAction="#Update_Socio_function" prefHeight="30.0" prefWidth="64.0" text="Update" />
+      <TextField fx:id="name_textfield" layoutX="93.0" layoutY="286.0" prefHeight="26.0" prefWidth="85.0" promptText="Name" />
+      <TextField fx:id="surname_textfield" layoutX="376.0" layoutY="286.0" prefHeight="26.0" prefWidth="85.0" promptText="Surname" />
+      <TextField fx:id="fiscalcode_textfield" layoutX="93.0" layoutY="396.0" prefHeight="26.0" prefWidth="85.0" promptText="Fiscal Code" />
+      <Text layoutX="13.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name   :" wrappingWidth="73.9453125" />
+      <Text layoutX="249.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname  :" wrappingWidth="73.9453125" />
+      <Text layoutX="13.0" layoutY="413.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fiscal code :" />
+      <TextField fx:id="Address_textfield" layoutX="93.0" layoutY="444.0" prefHeight="26.0" prefWidth="85.0" promptText="Address" />
+      <Text layoutX="13.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address :" wrappingWidth="73.9453125" />
+      <Text fill="#0d24d7" layoutX="80.0" layoutY="563.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delete , Update and Notify operations can be done writing the name of the user in the &quot;Name&quot; textfield and clicking on the desired function button for changes to apply.." wrappingWidth="528.2560119628906" />
+      <Button fx:id="notify_btn" layoutX="434.0" layoutY="500.0" mnemonicParsing="false" onAction="#NotifyMembers_function" prefHeight="30.0" prefWidth="109.0" text="Notify members" />
+      <TextField fx:id="CCBalance_textfield" layoutX="364.0" layoutY="395.0" prefHeight="26.0" prefWidth="109.0" promptText="Credit Card Balance" />
+      <Text layoutX="224.0" layoutY="411.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Credit Card Balance :" />
+      <Text fill="#0d24d7" layoutX="-37.0" layoutY="571.0" strokeType="OUTSIDE" strokeWidth="0.0" text="                 Note :" wrappingWidth="159.25601196289062" />
+      <TextField fx:id="Password_textfield" layoutX="371.0" layoutY="340.0" prefHeight="26.0" prefWidth="96.0" promptText="Password" />
+      <Text layoutX="249.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password  :" wrappingWidth="96.0" />
+      <TextField fx:id="Username_txtfield" layoutX="93.0" layoutY="341.0" prefHeight="26.0" prefWidth="85.0" promptText="Username" />
+      <Text layoutX="12.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username :" />
+      <TextField fx:id="col_membership_status" layoutX="363.0" layoutY="443.0" prefHeight="26.0" prefWidth="109.0" promptText="Membership_status" />
+      <Text layoutX="223.0" layoutY="459.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Membership_status" />
     </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

@@ -56,6 +56,9 @@ public class BoatsAndChallenges_AdminControllerClass implements Initializable {
     private Button update_challenge_btn;
 
     @FXML
+    private TextField boat_status_textfield;
+
+    @FXML
     private TableColumn<Boat, Integer> col_ID_boat;
 
     @FXML
@@ -63,6 +66,12 @@ public class BoatsAndChallenges_AdminControllerClass implements Initializable {
 
     @FXML
     private TableColumn<Boat, String> col_Status_boat_admin;
+
+    @FXML
+    private TableColumn<Boat, String> col_boat_owner;
+
+    @FXML
+    private TableColumn<Activity, Integer> col_participants;
 
 
     @FXML
@@ -91,7 +100,7 @@ public class BoatsAndChallenges_AdminControllerClass implements Initializable {
         try {
             ResultSet rs1 = con.createStatement().executeQuery("SELECT * from boat");
             while (rs1.next()) {
-                oblist1.add(new Boat(rs1.getInt("id"), rs1.getString("name") , rs1.getString("Status")));
+                oblist1.add(new Boat(rs1.getInt("id"), rs1.getString("name") , rs1.getString("Status") , rs1.getString("owner")));
             }
         } catch (
                 SQLException e) {
@@ -101,7 +110,7 @@ public class BoatsAndChallenges_AdminControllerClass implements Initializable {
         try {
             ResultSet rs2 = con.createStatement().executeQuery("SELECT * from challenges");
             while (rs2.next()) {
-                oblist2.add(new Activity(rs2.getString("name"), rs2.getInt(2)));
+                oblist2.add(new Activity(rs2.getString("name"), rs2.getInt(2), rs2.getInt(3)));
 
             }
         } catch (SQLException e) {
@@ -112,9 +121,11 @@ public class BoatsAndChallenges_AdminControllerClass implements Initializable {
         col_ID_boat.setCellValueFactory(new PropertyValueFactory<>("id"));
         col_name_boat.setCellValueFactory(new PropertyValueFactory<>("name"));
         col_Status_boat_admin.setCellValueFactory(new PropertyValueFactory<>("Status"));
+        col_boat_owner.setCellValueFactory(new PropertyValueFactory<>("owner"));
 
         col_prize.setCellValueFactory(new PropertyValueFactory<>("prize"));
         col_name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        col_participants.setCellValueFactory(new PropertyValueFactory<>("participants"));
 
 
         table1.setItems(oblist1);
@@ -135,12 +146,13 @@ public class BoatsAndChallenges_AdminControllerClass implements Initializable {
     public void add_boat_function(ActionEvent e) {
         try {
             String sql = "INSERT INTO boat"
-                    + "(id, name)"
-                    + "VALUES (?,?)";
+                    + "(id, name, Status)"
+                    + "VALUES (?,?,?)";
             Connection con = getConnection();
             pst = con.prepareStatement(sql);
             pst.setString(1, boatid_textfield.getText());
             pst.setString(2, boatname_textfield.getText());
+            pst.setString(3, boat_status_textfield.getText());
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Inserted successfully(Click on boats and challenges sections button to refresh the page\nand display the new changes)");
 
@@ -159,12 +171,13 @@ public class BoatsAndChallenges_AdminControllerClass implements Initializable {
 
     public void Update_boat_function(ActionEvent e){
         try {
-            String sql = "UPDATE boat SET id=?, name=? WHERE name=?";
+            String sql = "UPDATE boat SET id=?, name=? , Status=? WHERE name=?";
             Connection con = getConnection();
             pst = con.prepareStatement(sql);
             pst.setString(1, boatid_textfield.getText());
             pst.setString(2, boatname_textfield.getText());
-            pst.setString(3, boatname_textfield.getText());
+            pst.setString(3, boat_status_textfield.getText());
+            pst.setString(4, boatname_textfield.getText());
 
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null , "Updated successfully(Click on boats and challenges sections button to refresh the page\nto see the new changes)");
@@ -183,7 +196,7 @@ public class BoatsAndChallenges_AdminControllerClass implements Initializable {
 
     public void Delete_boat_BYNAME(ActionEvent e){
         try {
-            String sql =    "DELETE FROM boat WHERE name=?";
+            String sql = "DELETE FROM boat WHERE name=?";
             Connection con = getConnection();
             pst = con.prepareStatement(sql);
             pst.setString(1, boatname_textfield.getText());

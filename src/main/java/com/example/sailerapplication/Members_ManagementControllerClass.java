@@ -37,10 +37,19 @@ public class Members_ManagementControllerClass implements Initializable {
     private TableColumn<Socio, String> col_sname;
 
     @FXML
+    private TableColumn<Socio, String> col_membership;
+
+    @FXML
     private TableColumn<Socio, Integer> col_CCBalance;
 
     @FXML
     private TableColumn<Socio, String> col_surname;
+
+    @FXML
+    private TableColumn<Socio, String> col_username;
+
+    @FXML
+    private TableColumn<Socio, String> col_password;
 
 
 
@@ -69,6 +78,12 @@ public class Members_ManagementControllerClass implements Initializable {
     private TextField CCBalance_textfield;
 
     @FXML
+    private TextField Password_textfield;
+
+    @FXML
+    private TextField Username_txtfield;
+
+    @FXML
     private TableView<Socio> table;
 
     ObservableList<Socio> oblist = FXCollections.observableArrayList();
@@ -88,7 +103,7 @@ public class Members_ManagementControllerClass implements Initializable {
         try {
             ResultSet rs = con.createStatement().executeQuery("select * from user");
             while (rs.next()) {
-                oblist.add(new Socio(rs.getString("name"), rs.getString("surname"), rs.getString("fiscal_code"), rs.getString("address"), rs.getInt("CCBalance")));
+                oblist.add(new Socio(rs.getString("name"), rs.getString("surname"), rs.getString("username"), rs.getString("password"), rs.getString("fiscal_code"), rs.getString("address"), rs.getInt("CCBalance") , rs.getString("membership_status")));
 
             }
 
@@ -98,9 +113,12 @@ public class Members_ManagementControllerClass implements Initializable {
 
         col_sname.setCellValueFactory(new PropertyValueFactory<>("name"));
         col_surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
+        col_username.setCellValueFactory(new PropertyValueFactory<>("username"));
+        col_password.setCellValueFactory(new PropertyValueFactory<>("password"));
         col_address.setCellValueFactory(new PropertyValueFactory<>("address"));
         col_fiscal_code.setCellValueFactory(new PropertyValueFactory<>("fiscal_code"));
         col_CCBalance.setCellValueFactory(new PropertyValueFactory<>("CCBalance"));
+        col_membership.setCellValueFactory(new PropertyValueFactory<>("Membership_status"));
 
         table.setItems(oblist);
 
@@ -118,15 +136,20 @@ public class Members_ManagementControllerClass implements Initializable {
     public void add_socio_function(ActionEvent e) {
         try {
             String sql = "INSERT INTO user"
-                    + "(name, surname, address, fiscal_code, CCBalance)"
-                    + "VALUES (?,?,?,?,?)";
+                    + "(name, surname, username , password , address, fiscal_code, CCBalance)"
+                    + "VALUES (?,?,?,?,?,?,?)";
             Connection con = getConnection();
             pst = con.prepareStatement(sql);
             pst.setString(1, name_textfield.getText());
             pst.setString(2, surname_textfield.getText());
-            pst.setString(3, Address_textfield.getText());
-            pst.setString(4, fiscalcode_textfield.getText());
-            pst.setInt(5, Integer.parseInt(CCBalance_textfield.getText()));
+            pst.setString(3, Username_txtfield.getText());
+            pst.setString(4, Password_textfield.getText());
+            pst.setString(5, Address_textfield.getText());
+            pst.setString(6, fiscalcode_textfield.getText());
+            if (CCBalance_textfield.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null,"Error -> Check the credit card balance box it must not be empty , if you dont want to modify it just put in the same value");
+            }
+            pst.setInt(7, Integer.parseInt(CCBalance_textfield.getText()));
             pst.executeUpdate();
             table.refresh();
             JOptionPane.showMessageDialog(null, "Inserted successfully(Click on members sections button to refresh the page\nand display the new changes)");
@@ -155,15 +178,21 @@ public class Members_ManagementControllerClass implements Initializable {
 
     public void Update_Socio_function(ActionEvent e) {
         try {
-            String sql = "UPDATE user SET name=?,surname=?,address=?,fiscal_code=?,CCBalance=? WHERE name=?";
+            String sql = "UPDATE user SET name=?,surname=?,username=?,password=?,address=?,fiscal_code=?,CCBalance=? WHERE name=?";
             Connection con = getConnection();
             pst = con.prepareStatement(sql);
             pst.setString(1, name_textfield.getText());
             pst.setString(2, surname_textfield.getText());
-            pst.setString(3, Address_textfield.getText());
-            pst.setString(4, fiscalcode_textfield.getText());
-            pst.setInt(5, Integer.parseInt(CCBalance_textfield.getText()));
-            pst.setString(6, name_textfield.getText());
+            pst.setString(3, Username_txtfield.getText());
+            pst.setString(4, Password_textfield.getText());
+            pst.setString(5, Address_textfield.getText());
+            pst.setString(6, fiscalcode_textfield.getText());
+            if (CCBalance_textfield.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null,"Error -> Check the credit card balance box it must not be empty , if you dont want to modify it just put in the same value");
+            }
+            pst.setInt(7, Integer.parseInt(CCBalance_textfield.getText()));
+
+            pst.setString(8, name_textfield.getText());
             pst.executeUpdate();
             table.refresh();
             JOptionPane.showMessageDialog(null, "Updated successfully(Click on members sections button to refresh the page\nand see the new changes)");
@@ -187,6 +216,7 @@ public class Members_ManagementControllerClass implements Initializable {
          }
          */
         sendMail();
+        JOptionPane.showMessageDialog(null,"A notification has been sent to the mail");
     }
 
 
@@ -196,11 +226,11 @@ public class Members_ManagementControllerClass implements Initializable {
 
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
-        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.host", "smtp.office365.com");
         properties.put("mail.smtp.port", "587");
 
-        String MyAccountEmail = "SailerAppMailer@gmail.com";
-        String password = "SailerAppMailer999";
+        String MyAccountEmail = "comeonapp@outlook.com";
+        String password = "easypass123";
 
 
         Session session = Session.getInstance(properties, new Authenticator() {
@@ -210,27 +240,29 @@ public class Members_ManagementControllerClass implements Initializable {
             }
         });
 
-        Message message = prepareMessage(session, MyAccountEmail);
+        String dest_addr = Address_textfield.getText();
+        if (dest_addr.isEmpty()){
+            JOptionPane.showMessageDialog(null,"Destination address Error-> Please make sure that the address textbox is not empty and that you have entered a valid e-mail address");
+        }
+        Message message = prepareMessage(session, MyAccountEmail , dest_addr);
         Transport.send(message);
         System.out.println("Message sent successfully");
 
     }
 
-    private static Message prepareMessage(Session session, String MyAccountEmail) throws SQLException {
+    private static Message prepareMessage(Session session, String MyAccountEmail, String dest_addr) throws SQLException {
         try {
             Connection con = getConnection();
-                ResultSet rs = con.createStatement().executeQuery("select address from user");
-                while (rs.next()) {
-                        String recipient = rs.getString("address");
-                        System.out.println("Recipient address " + recipient + "\n");
-                        Message message = new MimeMessage(session);
-                        message.setFrom(new InternetAddress(MyAccountEmail));
-                        message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-                        message.setSubject("Sailer Club Notifications System");
-                        String htmlCode = "<h1> <font size=5 face=\"verdana\"  color=\"#008000\">Billing Informations </font>  </h1> </br> <h2>  Hello " + recipient + ",<br> You may have to check your club fees section in the club application for more informations related to your pending club fees, <br>Have a nice day,<br>Sailer Admin </h2>";
-                        message.setContent(htmlCode, "text/html");
-                        return message;
-                }
+
+                System.out.println("Recipient address " + dest_addr + "\n");
+                Message message = new MimeMessage(session);
+                message.setFrom(new InternetAddress(MyAccountEmail));
+                message.setRecipient(Message.RecipientType.TO, new InternetAddress(dest_addr));
+                message.setSubject("Sailer Club - Billing Notification");
+                String htmlCode = "<h1> <font size=5 face=\"verdana\"  color=\"#008000\">Billing Informations </font> </h1> <h2>  Hello " + dest_addr + ",<br> You may have to check your club fees section in the club application for more informations related to your pending club fees, <br>Have a nice day,<br>Sailer Admin </h2>";
+                message.setContent(htmlCode, "text/html");
+            return message;
+
 
         } catch (MessagingException e) {
             Logger.getLogger(Members_ManagementControllerClass.class.getName()).log(Level.SEVERE, null, e);

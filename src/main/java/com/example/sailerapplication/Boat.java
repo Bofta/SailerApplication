@@ -5,6 +5,7 @@ public class Boat {
     private int id;
     private String name;
     private String Status;
+    private String owner;
 
     /**
      *  False by default
@@ -13,10 +14,11 @@ public class Boat {
     public boolean Quota_imbarcazione_boat_status = false;
 
 
-    public Boat(int id , String name , String Status) {
+    public Boat(int id , String name , String Status , String owner) {
         this.id = id;
         this.name = name;
         this.Status = Status;
+        this.owner = owner;
     }
 
     /**
@@ -45,5 +47,13 @@ public class Boat {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 }

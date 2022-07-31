@@ -29,7 +29,14 @@ public class Clubfees_ControllerClass implements Initializable{
     private TableColumn<Socio, String> col_fiscal_code;
 
     @FXML
+    private TableColumn<Activity, Integer> col_participants;
+
+    @FXML
     private TableColumn<Socio, String> col_sname;
+
+    @FXML
+    private TableColumn<Socio, String> col_membership_status;
+
 
     @FXML
     private TableColumn<Socio, Integer> col_CCBalance;
@@ -65,7 +72,7 @@ public class Clubfees_ControllerClass implements Initializable{
         try {
             ResultSet rs5 = con.createStatement().executeQuery("SELECT * from challenges");
             while (rs5.next()) {
-                oblist3.add(new Activity(rs5.getString(1), rs5.getInt(2)));
+                oblist3.add(new Activity(rs5.getString(1), rs5.getInt(2) , rs5.getInt(3)));
 
             }
         } catch (SQLException e) {
@@ -80,7 +87,7 @@ public class Clubfees_ControllerClass implements Initializable{
         try {
             ResultSet rs = con.createStatement().executeQuery("select * from user");
             while (rs.next()) {
-                oblist4.add(new Socio(rs.getString("name"), rs.getString("surname"), rs.getString("fiscal_code"), rs.getString("address"), rs.getInt("CCBalance")));
+                oblist4.add(new Socio(rs.getString("name"), rs.getString("surname"), rs.getString("username") , rs.getString("password") , rs.getString("fiscal_code"), rs.getString("address"), rs.getInt("CCBalance") , rs.getString("membership_status")));
 
             }
 
@@ -93,12 +100,13 @@ public class Clubfees_ControllerClass implements Initializable{
         col_address.setCellValueFactory(new PropertyValueFactory<>("address"));
         col_fiscal_code.setCellValueFactory(new PropertyValueFactory<>("fiscal_code"));
         col_CCBalance.setCellValueFactory(new PropertyValueFactory<>("CCBalance"));
+        col_membership_status.setCellValueFactory(new PropertyValueFactory<>("Membership_status"));
 
 
 
         col_prize_clubfees.setCellValueFactory(new PropertyValueFactory<>("prize"));
         col_challenge_clubfees.setCellValueFactory(new PropertyValueFactory<>("name"));
-
+        col_participants.setCellValueFactory(new PropertyValueFactory<>("participants"));
 
         Challenge_table.setItems(oblist3);
         table.setItems(oblist4);

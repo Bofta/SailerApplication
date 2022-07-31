@@ -5,18 +5,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import javax.swing.*;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 
@@ -85,7 +79,7 @@ public class BoatsAndChallenges_ClientControllerClass implements Initializable {
         try {
             ResultSet rs1 = con.createStatement().executeQuery("SELECT * from boat");
             while (rs1.next()) {
-                oblist1.add(new Boat(rs1.getInt("id"), rs1.getString("name"), rs1.getString("Status")));
+                oblist1.add(new Boat(rs1.getInt("id"), rs1.getString("name"), rs1.getString("Status") , rs1.getString("owner")));
             }
         } catch (
                 SQLException e) {
@@ -95,7 +89,7 @@ public class BoatsAndChallenges_ClientControllerClass implements Initializable {
         try {
             ResultSet rs2 = con.createStatement().executeQuery("SELECT * from challenges");
             while (rs2.next()) {
-                oblist2.add(new Activity(rs2.getString("name"), rs2.getInt(2)));
+                oblist2.add(new Activity(rs2.getString("name"), rs2.getInt(2) , rs2.getInt(3)));
 
             }
         } catch (SQLException e) {
@@ -126,36 +120,67 @@ public class BoatsAndChallenges_ClientControllerClass implements Initializable {
      * @param e
      */
 
-    public void buy_Boat(ActionEvent e) {
-        try {
-            String sql = "INSERT INTO boat"
-                    + "(id, name)"
-                    + "VALUES (?,?)";
-            Connection con = getConnection();
-            pst = con.prepareStatement(sql);
-            pst.setString(1, boatid_textfield.getText());
-            pst.setString(2, boatname_textfield.getText());
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Inserted successfully(Click on boats and challenges sections button to refresh the page\nand display the new changes)");
-
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex);
-        }
-    }
-
     /**
-     * Update boat button event handler that adds a boat with the user input informations into the database using the app.
      *
      * @param e
      */
 
+
+    /**
+     * Update boat button event handler that adds a boat with the user input informations into the database using the app.
+     *
+     * @param
+     */
+
+    /**
+     *
+     * @param event
+     * @throws SQLException
+     *
+     * public void Buy_Boat(ActionEvent event) throws SQLException {
+     *         Alert boatByingNotifications = new Alert(Alert.AlertType.CONFIRMATION);
+     *         Boat[] ownedBoats = new Boat[Socio.boats_owned.length];
+     *         String sql = "SELECT name from boat where name =?";
+     *         PreparedStatement pstmt = getConnection().prepareStatement(sql);
+     *         pstmt.setString(1,boatname_textfield.getText());
+     *         pstmt.executeUpdate();
+     *
+     *
+     *
+     *         boatByingNotifications.setHeaderText("Boat Payment");
+     *         boatByingNotifications.setContentText("This boat will cost you 1000 $\nProceed with payment?");
+     *         if (boatByingNotifications.showAndWait().get() == ButtonType.OK){
+     *             System.out.println("Boat added to property");
+     *         }
+     *         Socio.appendBoat_to_property(ownedBoats, );
+     *
+     *
+     *     }
+     */
 
 
 
     /**
      * Delete boat button event handler that adds a boat with the user input informations from the database using the app.
      *
+     * public void buy_Boat(ActionEvent e) {
+     *         try {
+     *             Socio.
+     *             String sql = "INSERT INTO boat"
+     *                     + "(id, name)"
+     *                     + "VALUES (?,?)";
+     *             Connection con = getConnection();
+     *             pst = con.prepareStatement(sql);
+     *             pst.setString(1, boatid_textfield.getText());
+     *             pst.setString(2, boatname_textfield.getText());
+     *             pst.executeUpdate();
+     *             JOptionPane.showMessageDialog(null, "Inserted successfully(Click on boats and challenges sections button to refresh the page\nand display the new changes)");
+     *
+     *
+     *         } catch (SQLException ex) {
+     *             JOptionPane.showMessageDialog(null, ex);
+     *         }
+     *     }
      * @param e
      */
 

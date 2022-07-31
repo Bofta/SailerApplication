@@ -68,15 +68,18 @@ public class Database_CRUD_Operations {
                     ", address varchar(32) NOT NULL" +
                     ", fiscal_code varchar(32) NOT NULL" +
                     ", CCBalance double NOT NULL" +
+                    ", membership_status char(32)" +
                     ", PRIMARY KEY(name))");
 
             PreparedStatement create_table_challenges = con.prepareStatement("CREATE TABLE IF NOT EXISTS challenges(name varchar(32) NOT NULL " +
                     ", prize int(11) not null" +
+                    ", participants int(32) " +
                     ", PRIMARY KEY(name))");
 
             PreparedStatement create_table_boat = con.prepareStatement("CREATE TABLE IF NOT EXISTS boat(id int(10) NOT NULL AUTO_INCREMENT" +
                     ", name varchar(32) NOT NULL" +
-                    ", Status char(10) NOT NULL" +
+                    ", Status char(20) NOT NULL" +
+                    ", owner varchar(20) " +
                     ", PRIMARY KEY(id))");
 
             create_table_admin.executeUpdate();
@@ -104,7 +107,7 @@ public class Database_CRUD_Operations {
 
         try {
             Connection con = getConnection();
-            PreparedStatement posted_admin1 = con.prepareStatement("INSERT INTO admin (username , password ) VALUES ('root', 'root')");
+            PreparedStatement posted_admin1 = con.prepareStatement("INSERT INTO admin (username , password ) VALUES ('admin', 'admin')");
             posted_admin1.executeUpdate();
 
         } catch (SQLException throwables) {
@@ -118,14 +121,14 @@ public class Database_CRUD_Operations {
         try {
             Connection con = getConnection();
 
-            PreparedStatement posted_user1 = con.prepareStatement("INSERT INTO user (name, surname , username , password , address , fiscal_code , CCBalance)" +
-                                                                                " VALUES ('montasser', 'ben rejeb', 'devops', 'opsdev', 'montassar367@gmail.com', 'XXXX','5000')");
+            PreparedStatement posted_user1 = con.prepareStatement("INSERT INTO user (name, surname , username , password , address , fiscal_code , CCBalance , membership_status)" +
+                                                                                " VALUES ('montasser', 'ben rejeb', 'devops', 'opsdev', 'montassar367@gmail.com', 'XXXX','5000','Active')");
 
-            PreparedStatement posted_user2 = con.prepareStatement("INSERT INTO user (name, surname , username , password , address , fiscal_code, CCBalance) " +
-                                                                                " VALUES ('Mohamed', 'Touati', 'Mohamed93', 'Jamaica1993$', 'Achref15@gmail.com', 'YYYY','5000')");
+            PreparedStatement posted_user2 = con.prepareStatement("INSERT INTO user (name, surname , username , password , address , fiscal_code, CCBalance, membership_status) " +
+                                                                                " VALUES ('Mohamed', 'Touati', 'user', 'user', 'Achref15@gmail.com', 'YYYY','5000','Active')");
 
-            PreparedStatement posted_user3 = con.prepareStatement("INSERT INTO user (name, surname , username , password , address , fiscal_code, CCBalance)" +
-                                                                                " VALUES ('Mohammed', 'Achref Touil', 'Mohamed93', 'Achref-1234', 'Hama87@gmail.com', 'ZZZZ','5000')");
+            PreparedStatement posted_user3 = con.prepareStatement("INSERT INTO user (name, surname , username , password , address , fiscal_code, CCBalance , membership_status)" +
+                                                                                " VALUES ('Mohammed', 'Achref Touil', 'Mohamed93', 'Achref-1234', 'Hama87@gmail.com', 'ZZZZ','5000','Active')");
             posted_user1.executeUpdate();
             posted_user2.executeUpdate();
             posted_user3.executeUpdate();
@@ -141,9 +144,9 @@ public class Database_CRUD_Operations {
          */
         try {
             Connection con = getConnection();
-            PreparedStatement posted_Challenge1 = con.prepareStatement("INSERT INTO challenges (name , prize) VALUES ('RORCCaribbean','10000')");
-            PreparedStatement posted_Challenge2 = con.prepareStatement("INSERT INTO challenges (name , prize) VALUES ('Shell Cup 2022','20000')");
-            PreparedStatement posted_Challenge3 = con.prepareStatement("INSERT INTO challenges (name , prize) VALUES ('GrandPrize ','100000')");
+            PreparedStatement posted_Challenge1 = con.prepareStatement("INSERT INTO challenges (name , prize, participants) VALUES ('RORCCaribbean','10000','0')");
+            PreparedStatement posted_Challenge2 = con.prepareStatement("INSERT INTO challenges (name , prize, participants) VALUES ('Shell Cup 2022','20000','0')");
+            PreparedStatement posted_Challenge3 = con.prepareStatement("INSERT INTO challenges (name , prize, participants) VALUES ('GrandPrize ','100000','0')");
             posted_Challenge1.executeUpdate();
             posted_Challenge2.executeUpdate();
             posted_Challenge3.executeUpdate();
@@ -157,9 +160,9 @@ public class Database_CRUD_Operations {
          */
         try {
             Connection con = getConnection();
-            PreparedStatement posted_Boat1 = con.prepareStatement("INSERT INTO boat (id, name, Status) VALUES ('1','TANIT','AVAILABLE')");
-            PreparedStatement posted_Boat2 = con.prepareStatement("INSERT INTO boat (id, name, Status) VALUES ('2','CARTHAGE','AVAILABLE')");
-            PreparedStatement posted_Boat3 = con.prepareStatement("INSERT INTO boat (id, name, Status) VALUES ('3','Grande Navi Veloci','AVAILABLE')");
+            PreparedStatement posted_Boat1 = con.prepareStatement("INSERT INTO boat (id, name, Status, owner) VALUES ('1','Tanit','AVAILABLE','NULL')");
+            PreparedStatement posted_Boat2 = con.prepareStatement("INSERT INTO boat (id, name, Status, owner) VALUES ('2','Cartago','AVAILABLE','NULL')");
+            PreparedStatement posted_Boat3 = con.prepareStatement("INSERT INTO boat (id, name, Status, owner) VALUES ('3','Yacht','AVAILABLE','NULL')");
             posted_Boat1.executeUpdate();
             posted_Boat2.executeUpdate();
             posted_Boat3.executeUpdate();
@@ -198,7 +201,7 @@ public class Database_CRUD_Operations {
 
                 rowCount++;
                 String displayMessage = name + ", " + surname + ", " + username + ", " + address + ", " + fiscal_code + ", " + CCBalance;
-
+                System.out.println(displayMessage);
                 array.add(displayMessage);
             }
             System.out.println("Total numbers of selected records =" + rowCount);

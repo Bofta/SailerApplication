@@ -13,6 +13,7 @@ import java.util.Arrays;
 public class Activity {
     private String name;
     private int prize;
+    private int participants;
     /*
     private Person[] registered;
     */
@@ -24,11 +25,13 @@ public class Activity {
      * @return Activity the activity object
      * @param name
      * @param prize
+     * @param participants
      */
 
-    public Activity(String name, int prize) {
+    public Activity(String name, int prize , int participants) {
         this.name = name;
         this.prize = prize;
+        this.participants = participants;
     }
 
 
@@ -69,5 +72,13 @@ public class Activity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(int participants) {
+        this.participants = participants;
     }
 }

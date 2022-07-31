@@ -27,7 +27,7 @@ public class SailerApplicaton extends Application {
         exec_crud_ops.POST();
         exec_crud_ops.GET();
 
-        Scene root = new Scene(fxmlLoader.load(),700 ,480);
+        Scene root = new Scene(fxmlLoader.load(),800 ,600);
 
         root.setOnMousePressed(event -> {
             x = event.getSceneX();
