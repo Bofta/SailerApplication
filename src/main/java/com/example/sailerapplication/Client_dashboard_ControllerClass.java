@@ -37,7 +37,7 @@ public class Client_dashboard_ControllerClass implements Initializable {
     @Override
     public void initialize(URL location , ResourceBundle resources) {
         try {
-            URL url = new File("C:\\Users\\bbelh\\IdeaProjects\\SailerApplication\\src\\main\\resources\\com\\example\\sailerapplication\\Client_dashboardHomePage.fxml").toURI().toURL();
+            URL url = new File("src/main/resources/com/example/sailerapplication/Client_dashboardHomePage.fxml").toURI().toURL();
             Parent fxml = FXMLLoader.load(url);
             contentArea.getChildren().removeAll();
             contentArea.getChildren().setAll(fxml);
@@ -47,7 +47,7 @@ public class Client_dashboard_ControllerClass implements Initializable {
     }
 
     public void client_homepage(ActionEvent actionEvent) throws IOException{
-        URL url = new File("C:\\Users\\bbelh\\IdeaProjects\\SailerApplication\\src\\main\\resources\\com\\example\\sailerapplication\\Client_dashboardHomePage.fxml").toURI().toURL();
+        URL url = new File("src/main/resources/com/example/sailerapplication/Client_dashboardHomePage.fxml").toURI().toURL();
         Parent fxml = FXMLLoader.load(url);
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
@@ -61,19 +61,14 @@ public class Client_dashboard_ControllerClass implements Initializable {
     }
 
     public void Clubfees_FXMLFILE_LOADER_FUNCTION(ActionEvent actionEvent) throws IOException{
-        URL url = new File("C:\\Users\\bbelh\\IdeaProjects\\SailerApplication\\src\\main\\resources\\com\\example\\sailerapplication\\Clubfees.fxml").toURI().toURL();
+        URL url = new File("src/main/resources/com/example/sailerapplication/Clubfees.fxml").toURI().toURL();
         Parent fxml = FXMLLoader.load(url);
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
 
 
-    public void BoatsAndChallenges(ActionEvent actionEvent) throws IOException{
-        URL url = new File("src/main/resources/com/example/sailerapplication/BoatsAndChallenges_Admin.fxml").toURI().toURL();
-        Parent fxml = FXMLLoader.load(url);
-        contentArea.getChildren().removeAll();
-        contentArea.getChildren().setAll(fxml);
-    }
+
 
     public void userlogout(ActionEvent event ) throws IOException {
 

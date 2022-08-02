@@ -9,6 +9,7 @@ import java.util.ArrayList;
 /**
  * THIS CLASS CONTAINS ALL CRUD OPERATION (CREATE , READ , UPDATE , DELETE) FOR DATA IN THE DATABASE 'sailclub_db'
  * @author Montasser Ben Rejeb
+ * @author Wajdi Lajdal
  *
  */
 
@@ -73,7 +74,7 @@ public class Database_CRUD_Operations {
 
             PreparedStatement create_table_challenges = con.prepareStatement("CREATE TABLE IF NOT EXISTS challenges(name varchar(32) NOT NULL " +
                     ", prize int(11) not null" +
-                    ", participants int(32) " +
+                    ", participants varchar(100) " +
                     ", PRIMARY KEY(name))");
 
             PreparedStatement create_table_boat = con.prepareStatement("CREATE TABLE IF NOT EXISTS boat(id int(10) NOT NULL AUTO_INCREMENT" +
@@ -122,13 +123,13 @@ public class Database_CRUD_Operations {
             Connection con = getConnection();
 
             PreparedStatement posted_user1 = con.prepareStatement("INSERT INTO user (name, surname , username , password , address , fiscal_code , CCBalance , membership_status)" +
-                                                                                " VALUES ('montasser', 'ben rejeb', 'devops', 'opsdev', 'montassar367@gmail.com', 'XXXX','5000','Active')");
+                                                                                " VALUES ('montasser', 'ben rejeb', 'devops', 'opsdev', 'montassar367@gmail.com', 'XXXX','5000','active')");
 
             PreparedStatement posted_user2 = con.prepareStatement("INSERT INTO user (name, surname , username , password , address , fiscal_code, CCBalance, membership_status) " +
-                                                                                " VALUES ('Mohamed', 'Touati', 'user', 'user', 'Achref15@gmail.com', 'YYYY','5000','Active')");
+                                                                                " VALUES ('Mohamed', 'Touati', 'user', 'user', 'Achref15@gmail.com', 'YYYY','5000','active')");
 
             PreparedStatement posted_user3 = con.prepareStatement("INSERT INTO user (name, surname , username , password , address , fiscal_code, CCBalance , membership_status)" +
-                                                                                " VALUES ('Mohammed', 'Achref Touil', 'Mohamed93', 'Achref-1234', 'Hama87@gmail.com', 'ZZZZ','5000','Active')");
+                                                                                " VALUES ('Mohammed', 'Achref Touil', 'Mohamed93', 'Achref-1234', 'Hama87@gmail.com', 'ZZZZ','5000','inactive')");
             posted_user1.executeUpdate();
             posted_user2.executeUpdate();
             posted_user3.executeUpdate();

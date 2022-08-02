@@ -204,17 +204,6 @@ public class Members_ManagementControllerClass implements Initializable {
     }
 
     public void NotifyMembers_function(ActionEvent e) throws MessagingException, SQLException {
-        /**
-         Connection con = null;
-         con = getConnection();
-         ResultSet rs = con.createStatement().executeQuery("select address from user");
-         while (rs.next()) {
-         String recepient = rs.getString("address");
-         // recepient = Address_textfield.getText();
-         System.out.println("QUERY RESULT = " + recepient);
-
-         }
-         */
         sendMail();
         JOptionPane.showMessageDialog(null,"A notification has been sent to the mail");
     }

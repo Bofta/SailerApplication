@@ -8,7 +8,6 @@ package com.example.sailerapplication;
  * TODO: Fix the bugs
  *
  * @author      Montasser Ben Rejeb <montasser.benrejeb@studenti.unipr.it>
- * @author      Omar <@studenti.unipr.it>
 
  */
 public class Person

@@ -44,18 +44,6 @@ public class BoatsAndChallenges_AdminControllerClass implements Initializable {
     private TextField challenge_textfield;
 
     @FXML
-    private Button delete_boat_btn;
-
-    @FXML
-    private Button delete_challenge_btn;
-
-    @FXML
-    private Button update_boat_btn;
-
-    @FXML
-    private Button update_challenge_btn;
-
-    @FXML
     private TextField boat_status_textfield;
 
     @FXML

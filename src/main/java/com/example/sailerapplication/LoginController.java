@@ -2,7 +2,6 @@ package com.example.sailerapplication;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -12,12 +11,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class LoginController {
-
-    @FXML
-    private Button login_button;
-
-    @FXML
-    private Label close;
 
     @FXML
     private TextField passwordPasswordField;

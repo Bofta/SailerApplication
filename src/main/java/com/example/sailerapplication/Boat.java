@@ -7,12 +7,6 @@ public class Boat {
     private String Status;
     private String owner;
 
-    /**
-     *  False by default
-     *  True if paid the appropriate value of check in period in the SGP(Servizio_Gestione_Pagamenti).
-     */
-    public boolean Quota_imbarcazione_boat_status = false;
-
 
     public Boat(int id , String name , String Status , String owner) {
         this.id = id;

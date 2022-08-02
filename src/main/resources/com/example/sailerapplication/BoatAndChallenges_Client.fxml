@@ -10,41 +10,42 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="600.0" maxWidth="800.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@../../../../../Desktop/ProjectMayhem/table.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sailerapplication.BoatsAndChallenges_AdminControllerClass">
+<Pane maxHeight="659.0" maxWidth="821.0" prefHeight="659.0" prefWidth="821.0" stylesheets="@../../../../../Desktop/ProjectMayhem/table.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sailerapplication.BoatsAndChallenges_ClientControllerClass">
     <children>
-        <Label prefHeight="545.0" prefWidth="682.0">
+        <Label layoutY="7.0" prefHeight="561.0" prefWidth="742.0">
             <font>
                 <Font name="System Bold" size="36.0" />
             </font>
         </Label>
-        <TableView fx:id="table1" layoutX="-1.0" prefHeight="135.0" prefWidth="682.0">
+        <TableView fx:id="table1" layoutY="-4.0" prefHeight="105.0" prefWidth="682.0">
             <columns>
                 <TableColumn fx:id="col_name_boat" minWidth="0.0" prefWidth="200.00000607967377" text="Boat Name" />
                 <TableColumn fx:id="col_ID_boat" prefWidth="120.0" text="Boat ID" />
-                <TableColumn fx:id="col_Status_boat_admin" prefWidth="156.79998779296875" text="Boat Status" />
+                <TableColumn fx:id="col_Status_boat_client" prefWidth="156.79998779296875" text="Boat Status" />
                 <TableColumn fx:id="col_boat_owner" prefWidth="202.39993286132812" text="Boat Owner" />
             </columns>
         </TableView>
-        <TableView fx:id="table2" layoutX="-1.0" layoutY="286.0" prefHeight="135.0" prefWidth="682.0">
+        <TableView fx:id="table2" layoutX="3.0" layoutY="220.0" prefHeight="135.0" prefWidth="682.0">
             <columns>
                 <TableColumn fx:id="col_name" prefWidth="243.20001828670502" text="Challenge" />
                 <TableColumn fx:id="col_prize" prefWidth="176.0" text="Prize" />
                 <TableColumn fx:id="col_participants" prefWidth="261.1999816894531" text="Participants" />
             </columns>
         </TableView>
-        <Button fx:id="add_boat_btn" layoutX="142.0" layoutY="232.0" mnemonicParsing="false" onAction="#add_boat_function" prefHeight="30.0" prefWidth="64.0" text="Own" />
-        <Button fx:id="update_boat_btn" layoutX="284.0" layoutY="232.0" mnemonicParsing="false" onAction="#Update_boat_function" prefHeight="30.0" prefWidth="64.0" text="Sell" />
-        <TextField fx:id="boatname_textfield" layoutX="334.0" layoutY="172.0" prefHeight="26.0" prefWidth="85.0" promptText="Boat Name" />
-        <TextField fx:id="challenge_textfield" layoutX="152.0" layoutY="439.0" prefHeight="26.0" prefWidth="85.0" promptText="Challenge" />
-        <TextField fx:id="prize_textfield" layoutX="356.0" layoutY="439.0" prefHeight="26.0" prefWidth="115.0" promptText="Prize" />
-        <Text layoutX="249.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Boat name :" />
-        <Text layoutX="74.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Challenge :" />
-        <Text layoutX="298.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prize :" />
-        <Button fx:id="add_challenge_btn" layoutX="205.0" layoutY="501.0" mnemonicParsing="false" onAction="#add_challenge_function" prefHeight="30.0" prefWidth="64.0" text="SignUp" />
-        <Button fx:id="update_challenge_btn" layoutX="320.0" layoutY="501.0" mnemonicParsing="false" onAction="#Update_challenge_function" prefHeight="30.0" prefWidth="128.0" text="Revoke Signup" />
-        <Text fill="#0d24d7" layoutX="91.0" layoutY="557.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add , Update and Remove functions can be done writing the name of the boat/challenge in the relative&quot;Name&quot; textfield and clicking on the desired function button for changes to apply.." wrappingWidth="528.2560119628906" />
-        <Text fill="#0d24d7" layoutX="-26.0" layoutY="565.0" strokeType="OUTSIDE" strokeWidth="0.0" text="                 Note :" wrappingWidth="159.25601196289062" />
-      <Button fx:id="update_boat_btn1" layoutX="414.0" layoutY="232.0" mnemonicParsing="false" onAction="#Update_boat_function" prefHeight="30.0" prefWidth="115.0" text="Pay Parking fees" />
+        <Button fx:id="own_boat_btn" layoutX="449.0" layoutY="152.0" mnemonicParsing="false" onAction="#Own_Boat" prefHeight="30.0" prefWidth="64.0" text="Own" />
+        <TextField fx:id="boatname_textfield" layoutX="297.0" layoutY="154.0" prefHeight="26.0" prefWidth="85.0" promptText="Boat Name" />
+        <TextField fx:id="challenge_textfield" layoutX="293.0" layoutY="373.0" prefHeight="26.0" prefWidth="85.0" promptText="Challenge" />
+        <Text layoutX="210.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Boat name :" />
+        <Text layoutX="211.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Challenge :" />
+        <Button fx:id="Signup_to_challenge_btn" layoutX="407.0" layoutY="371.0" mnemonicParsing="false" onAction="#SignUp_to_challenge_function" prefHeight="30.0" prefWidth="64.0" text="SignUp" />
+        <Text fill="#0d24d7" layoutX="91.0" layoutY="487.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add , Update and Remove functions can be done writing the name of the boat/challenge in the relative&quot;Name&quot; textfield and clicking on the desired function button for changes to apply.." wrappingWidth="528.2560119628906" />
+        <Text fill="#0d24d7" layoutX="-22.0" layoutY="502.0" strokeType="OUTSIDE" strokeWidth="0.0" text="                 Note :" wrappingWidth="159.25601196289062" />
+      <TextField fx:id="username_boats_textfield" layoutX="99.0" layoutY="154.0" prefHeight="26.0" prefWidth="85.0" promptText="Username" />
+      <Text layoutX="14.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username :" />
+      <Button fx:id="disown_boat_btn" layoutX="541.0" layoutY="152.0" mnemonicParsing="false" onAction="#Own_Boat" prefHeight="30.0" prefWidth="64.0" text="Disown" />
+      <Button fx:id="Unsubscribe_btn" layoutX="504.0" layoutY="370.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="98.0" text="Unsubscribe" />
+      <TextField fx:id="username_challenges_textfield" layoutX="99.0" layoutY="373.0" prefHeight="26.0" prefWidth="85.0" promptText="Username" />
+      <Text layoutX="14.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username :" />
     </children>
     <padding>
         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

@@ -4,11 +4,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -20,18 +26,10 @@ import static com.example.sailerapplication.DBConnector.getConnection;
 
 public class BoatsAndChallenges_ClientControllerClass implements Initializable {
 
-
     @FXML
-    private TextField prize_textfield;
+    private TextField username_challenges_textfield;
 
-    @FXML
-    private Button add_boat_btn;
 
-    @FXML
-    private Button add_challenge_btn;
-
-    @FXML
-    private TextField boatid_textfield;
 
     @FXML
     private TextField boatname_textfield;
@@ -40,7 +38,7 @@ public class BoatsAndChallenges_ClientControllerClass implements Initializable {
     private TextField challenge_textfield;
 
     @FXML
-    private Button delete_boat_btn;
+    private TableColumn<Boat, String> col_boat_owner;
 
     @FXML
     private TableColumn<Boat, String> col_Status_boat_client;
@@ -51,6 +49,9 @@ public class BoatsAndChallenges_ClientControllerClass implements Initializable {
 
     @FXML
     private TableColumn<Boat, String> col_name_boat;
+
+    @FXML
+    private TableColumn<Activity, Integer> col_participants;
 
 
     @FXML
@@ -69,6 +70,7 @@ public class BoatsAndChallenges_ClientControllerClass implements Initializable {
     ObservableList<Activity> oblist2 = FXCollections.observableArrayList();
 
     Database_CRUD_Operations dbo = new Database_CRUD_Operations();
+    private Object Integer;
 
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -100,89 +102,38 @@ public class BoatsAndChallenges_ClientControllerClass implements Initializable {
         col_ID_boat.setCellValueFactory(new PropertyValueFactory<>("id"));
         col_name_boat.setCellValueFactory(new PropertyValueFactory<>("name"));
         col_Status_boat_client.setCellValueFactory(new PropertyValueFactory<>("Status"));
+        col_boat_owner.setCellValueFactory(new PropertyValueFactory<>("owner"));
 
         col_prize.setCellValueFactory(new PropertyValueFactory<>("prize"));
         col_name.setCellValueFactory(new PropertyValueFactory<>("name"));
-
+        col_participants.setCellValueFactory(new PropertyValueFactory<>("participants"));
 
         table1.setItems(oblist1);
         table2.setItems(oblist2);
 
-
     }
 
     PreparedStatement pst = null;
+    PreparedStatement pst1 = null;
 
 
-    /**
-     * Add boat button event handler that adds a boat with the user input informations into the database using the app.
-     *
-     * @param e
-     */
+    // FINESTRA POPUP PAGAMENTO
 
-    /**
-     *
-     * @param e
-     */
+      public void Own_Boat(ActionEvent event) throws IOException {
+             Alert boatByingNotifications = new Alert(Alert.AlertType.CONFIRMATION);
+             boatByingNotifications.setHeaderText("Boat Payment");
+             boatByingNotifications.setContentText("Proceed with payment?");
+              if (boatByingNotifications.showAndWait().get() == ButtonType.OK){
+                  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PaymentSystem.fxml"));
+                  Parent root1 = (Parent) fxmlLoader.load();
+                  Stage stage = new Stage();
+                  stage.setTitle("Payment System");
+                  stage.setScene(new Scene(root1));
+                  stage.show();
 
+             }
+          }
 
-    /**
-     * Update boat button event handler that adds a boat with the user input informations into the database using the app.
-     *
-     * @param
-     */
-
-    /**
-     *
-     * @param event
-     * @throws SQLException
-     *
-     * public void Buy_Boat(ActionEvent event) throws SQLException {
-     *         Alert boatByingNotifications = new Alert(Alert.AlertType.CONFIRMATION);
-     *         Boat[] ownedBoats = new Boat[Socio.boats_owned.length];
-     *         String sql = "SELECT name from boat where name =?";
-     *         PreparedStatement pstmt = getConnection().prepareStatement(sql);
-     *         pstmt.setString(1,boatname_textfield.getText());
-     *         pstmt.executeUpdate();
-     *
-     *
-     *
-     *         boatByingNotifications.setHeaderText("Boat Payment");
-     *         boatByingNotifications.setContentText("This boat will cost you 1000 $\nProceed with payment?");
-     *         if (boatByingNotifications.showAndWait().get() == ButtonType.OK){
-     *             System.out.println("Boat added to property");
-     *         }
-     *         Socio.appendBoat_to_property(ownedBoats, );
-     *
-     *
-     *     }
-     */
-
-
-
-    /**
-     * Delete boat button event handler that adds a boat with the user input informations from the database using the app.
-     *
-     * public void buy_Boat(ActionEvent e) {
-     *         try {
-     *             Socio.
-     *             String sql = "INSERT INTO boat"
-     *                     + "(id, name)"
-     *                     + "VALUES (?,?)";
-     *             Connection con = getConnection();
-     *             pst = con.prepareStatement(sql);
-     *             pst.setString(1, boatid_textfield.getText());
-     *             pst.setString(2, boatname_textfield.getText());
-     *             pst.executeUpdate();
-     *             JOptionPane.showMessageDialog(null, "Inserted successfully(Click on boats and challenges sections button to refresh the page\nand display the new changes)");
-     *
-     *
-     *         } catch (SQLException ex) {
-     *             JOptionPane.showMessageDialog(null, ex);
-     *         }
-     *     }
-     * @param e
-     */
 
     public void Delete_boat_BYNAME(ActionEvent e){
         try {
@@ -193,72 +144,40 @@ public class BoatsAndChallenges_ClientControllerClass implements Initializable {
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null , "Deleted successfully(Click on boats and challenges sections button to refresh the page\nto display the new changes)");
 
-
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null , ex);
         }
     }
 
-
     /**
-     * Add challenge button event handler that adds a challenge with the user input information into the database using the app.
+     * SignUp_to_challenge event handler that signup the user to a challenge.
      *
      * @param e
      */
 
-
-    public void add_challenge_function(ActionEvent e) {
+    public void SignUp_to_challenge_function(ActionEvent e) {
         try {
-            String sql = "INSERT INTO challenges"
-                    + "(name, prize)"
-                    + "VALUES (?,?)";
             Connection con = getConnection();
-            pst = con.prepareStatement(sql);
+            String sql0 = "select participants from challenges" +
+                    "where name =?";
+            pst = con.prepareStatement(sql0);
             pst.setString(1, challenge_textfield.getText());
-            pst.setString(2, prize_textfield.getText());
+
+            String sql = "INSERT INTO challenges SET participants=?"
+                    + "where name =?";
+            String result = sql0;
+            pst1 = con.prepareStatement(sql);
+            pst.setString(2, result + 1);
+            pst.setString(3, challenge_textfield.getText());
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Inserted successfully(Click on boats and challenges sections button to refresh the page\nto display the new changes)");
+            pst1.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Socio subscribed successfully to challenge(Click on B&C section button to refresh the page\nand display the new changes)");
 
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
     }
-
-    /**
-     * Update challenge button event handler that adds a challenge with the user input information into the database using the app.
-     *
-     * @param e
-     */
-
-
-    /**
-     * Remove boat button event handler that remove a challenge with the user input information from the database using the app.
-     *
-     * @param e
-     */
-
-    public void Delete_challenge_BYNAME(ActionEvent e){
-        try {
-            String sql =    "DELETE FROM challenges WHERE name=?";
-            Connection con = getConnection();
-            pst = con.prepareStatement(sql);
-            pst.setString(1, challenge_textfield.getText());
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(null , "Deleted successfully(Click on boats and challenges sections button to refresh the page\nto display the new changes)");
-
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null , ex);
-        }
-    }
-
-    /**
-     * method that permits the owner to add a boat to his property*
-     *
-     */
-
-
 
 }
 

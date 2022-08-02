@@ -34,7 +34,7 @@ public class Admin_dashboard_ControllerClass implements Initializable {
     @Override
     public void initialize(URL location , ResourceBundle resources) {
         try {
-            URL url = new File("C:\\Users\\bbelh\\IdeaProjects\\SailerApplication\\src\\main\\resources\\com\\example\\sailerapplication\\Admin_HomePage.fxml").toURI().toURL();
+            URL url = new File("src/main/resources/com/example/sailerapplication/Admin_HomePage.fxml").toURI().toURL();
             Parent fxml = FXMLLoader.load(url);
             contentArea.getChildren().removeAll();
             contentArea.getChildren().setAll(fxml);
@@ -44,21 +44,21 @@ public class Admin_dashboard_ControllerClass implements Initializable {
     }
 
     public void admin_home(javafx.event.ActionEvent actionEvent) throws IOException{
-        URL url = new File("C:\\Users\\bbelh\\IdeaProjects\\SailerApplication\\src\\main\\resources\\com\\example\\sailerapplication\\Admin_HomePage.fxml").toURI().toURL();
+        URL url = new File("src/main/resources/com/example/sailerapplication/Admin_HomePage.fxml").toURI().toURL();
         Parent fxml = FXMLLoader.load(url);
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
 
     public void members_Management(javafx.event.ActionEvent actionEvent) throws IOException{
-        URL url = new File("C:\\Users\\bbelh\\IdeaProjects\\SailerApplication\\src\\main\\resources\\com\\example\\sailerapplication\\Members_Management.fxml").toURI().toURL();
+        URL url = new File("src/main/resources/com/example/sailerapplication/Members_Management.fxml").toURI().toURL();
         Parent fxml = FXMLLoader.load(url);
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
 
     public void Clubfees_FXMLFILE_LOADER_FUNCTION(javafx.event.ActionEvent actionEvent) throws IOException{
-        URL url = new File("C:\\Users\\bbelh\\IdeaProjects\\SailerApplication\\src\\main\\resources\\com\\example\\sailerapplication\\Clubfees.fxml").toURI().toURL();
+        URL url = new File("src/main/resources/com/example/sailerapplication/Clubfees.fxml").toURI().toURL();
         Parent fxml = FXMLLoader.load(url);
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
@@ -66,7 +66,7 @@ public class Admin_dashboard_ControllerClass implements Initializable {
 
 
     public void BoatsAndChallenges(javafx.event.ActionEvent actionEvent) throws IOException{
-        URL url = new File("C:\\Users\\bbelh\\IdeaProjects\\SailerApplication\\src\\main\\resources\\com\\example\\sailerapplication\\BoatsAndChallenges_Admin.fxml").toURI().toURL();
+        URL url = new File("src/main/resources/com/example/sailerapplication/BoatsAndChallenges_Admin.fxml").toURI().toURL();
         Parent fxml = FXMLLoader.load(url);
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);

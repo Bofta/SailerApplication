@@ -19,28 +19,28 @@
             <Font name="Consolas" size="23.0" />
          </font>
       </Text>
-      <Text layoutX="199.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage information about your boats, challenges and pending payments" wrappingWidth="525.6478576660156">
+      <Text layoutX="129.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage information about your boats, challenges and pending payments" wrappingWidth="525.6478576660156">
          <font>
             <Font name="Candara Light Italic" size="20.0" />
          </font>
       </Text>
-      <Text layoutX="199.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Keep track of membership, storage and race registration payments and notifications" wrappingWidth="525.6478576660156">
+      <Text layoutX="117.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Keep track of membership, storage and race registration payments and notifications" wrappingWidth="525.6478576660156">
          <font>
             <Font name="Candara Light Italic" size="20.0" />
          </font>
       </Text>
-      <Text layoutX="164.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="As an member of our club and through this dashboard you can :  " wrappingWidth="525.6478576660156">
+      <Text layoutX="27.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="As an member of our club and through this dashboard you can :  " wrappingWidth="525.6478576660156">
          <font>
             <Font name="Candara Light" size="27.0" />
          </font>
       </Text>
       <ImageView fitHeight="69.0" fitWidth="134.0" layoutX="97.0" layoutY="282.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="79.0" fitWidth="80.0" layoutX="83.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="79.0" fitWidth="80.0" layoutX="20.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/credit-control-100.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="90.0" fitWidth="92.0" layoutX="74.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="90.0" fitWidth="92.0" layoutX="14.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/admin-settings-100.png" />
          </image>
