@@ -29,7 +29,8 @@ public class BoatsAndChallenges_ClientControllerClass implements Initializable {
     @FXML
     private TextField username_challenges_textfield;
 
-
+    @FXML
+    private TextField name_textfield;
 
     @FXML
     private TextField boatname_textfield;
@@ -43,6 +44,8 @@ public class BoatsAndChallenges_ClientControllerClass implements Initializable {
     @FXML
     private TableColumn<Boat, String> col_Status_boat_client;
 
+    @FXML
+    private TextField username_boats_textfield;
 
     @FXML
     private TableColumn<Boat, Integer> col_ID_boat;
@@ -70,7 +73,6 @@ public class BoatsAndChallenges_ClientControllerClass implements Initializable {
     ObservableList<Activity> oblist2 = FXCollections.observableArrayList();
 
     Database_CRUD_Operations dbo = new Database_CRUD_Operations();
-    private Object Integer;
 
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -117,36 +119,39 @@ public class BoatsAndChallenges_ClientControllerClass implements Initializable {
     PreparedStatement pst1 = null;
 
 
-    // FINESTRA POPUP PAGAMENTO
+    /**
+     * Function that add a boat as a socio Membership
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
 
-      public void Own_Boat(ActionEvent event) throws IOException {
-             Alert boatByingNotifications = new Alert(Alert.AlertType.CONFIRMATION);
-             boatByingNotifications.setHeaderText("Boat Payment");
-             boatByingNotifications.setContentText("Proceed with payment?");
-              if (boatByingNotifications.showAndWait().get() == ButtonType.OK){
-                  FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PaymentSystem.fxml"));
-                  Parent root1 = (Parent) fxmlLoader.load();
-                  Stage stage = new Stage();
-                  stage.setTitle("Payment System");
-                  stage.setScene(new Scene(root1));
-                  stage.show();
+      public void own_Boat(ActionEvent event) throws IOException, SQLException {
 
-             }
-          }
+          Connection con = getConnection();
 
-
-    public void Delete_boat_BYNAME(ActionEvent e){
-        try {
-            String sql =    "DELETE FROM boat WHERE name=?";
-            Connection con = getConnection();
-            pst = con.prepareStatement(sql);
-            pst.setString(1, boatname_textfield.getText());
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(null , "Deleted successfully(Click on boats and challenges sections button to refresh the page\nto display the new changes)");
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null , ex);
+          PreparedStatement strUpdate = con.prepareStatement("UPDATE boat set owner=" + "'" + username_boats_textfield.getText() + "' where name=" + "'" + boatname_textfield.getText() + "'");
+          System.out.println("The SQL statement is: " + strUpdate + "\n");
+          strUpdate.executeUpdate();
+          JOptionPane.showMessageDialog(null, "Boat " + boatname_textfield.getText() + " Has been added to your ownership\nCongratulations\nRefresh the page clicking on B&C button to display changes");
         }
+
+
+    /**
+     * Function that add a boat as a socio Membership
+     * @param event
+     * @throws IOException
+     * @throws SQLException
+     */
+
+    public void disown_Boat(ActionEvent event) throws IOException, SQLException {
+
+        Connection con = getConnection();
+
+        PreparedStatement strUpdate = con.prepareStatement("UPDATE boat set owner=NULL where name=" + "'" + boatname_textfield.getText() + "'");
+        System.out.println("The SQL statement is: " + strUpdate + "\n");
+        strUpdate.executeUpdate();
+        JOptionPane.showMessageDialog(null, "Boat " + boatname_textfield.getText() + " Has been removed from your membership\nRefresh the page clicking on B&C button to display changes");
     }
 
     /**
@@ -155,29 +160,27 @@ public class BoatsAndChallenges_ClientControllerClass implements Initializable {
      * @param e
      */
 
-    public void SignUp_to_challenge_function(ActionEvent e) {
-        try {
-            Connection con = getConnection();
-            String sql0 = "select participants from challenges" +
-                    "where name =?";
-            pst = con.prepareStatement(sql0);
-            pst.setString(1, challenge_textfield.getText());
+    public void SignUp_Socio_to_challenge_function(ActionEvent e) throws SQLException {
 
-            String sql = "INSERT INTO challenges SET participants=?"
-                    + "where name =?";
-            String result = sql0;
-            pst1 = con.prepareStatement(sql);
-            pst.setString(2, result + 1);
-            pst.setString(3, challenge_textfield.getText());
-            pst.executeUpdate();
-            pst1.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Socio subscribed successfully to challenge(Click on B&C section button to refresh the page\nand display the new changes)");
-
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex);
-        }
+        Connection con = getConnection();
+        PreparedStatement strUpdate = con.prepareStatement("UPDATE challenges set participants= participants + 1   where name=" + "'" + challenge_textfield.getText() + "'");
+        System.out.println("The SQL statement is: " + strUpdate + "\n");
+        strUpdate.executeUpdate();
+        JOptionPane.showMessageDialog(null, "Socio " + username_challenges_textfield.getText() + " Has been added to " + challenge_textfield + " as a new participant\nGood Luck in your next challenge\nRefresh the page clicking on B&C button to display changes");
     }
+
+    public void unsubscribe_socio_from_challenge_function(ActionEvent e) throws SQLException {
+
+        Connection con = getConnection();
+        PreparedStatement strUpdate = con.prepareStatement("UPDATE challenges set participants= participants - 1   where name=" + "'" + challenge_textfield.getText() + "'");
+        System.out.println("The SQL statement is: " + strUpdate + "\n");
+        strUpdate.executeUpdate();
+        JOptionPane.showMessageDialog(null, "Socio " + username_challenges_textfield.getText() + " Has been removed from the specified challenge\nGood Luck in your next challenge\nRefresh the page clicking on B&C button to display changes");
+    }
+
+
+
+
 
 }
 

@@ -7,7 +7,16 @@ import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.sql.Connection;
-import java.util.Scanner;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.swing.JOptionPane;
+
 
 import static com.example.sailerapplication.DBConnector.getConnection;
 
@@ -46,27 +55,22 @@ public class PaymentSystem {
 
 
     @FXML
-    private void VerifyInput_NOT_EMPTY(){
-        if (username_field.getText().isEmpty() == false || lastname_field.getText().isEmpty() == false
-                ||  fullname_field.getText().isEmpty()== false || firstname_field.getText().isEmpty() == true
-                 || email_field.getText().isEmpty() == false
-                );
-        JOptionPane.showMessageDialog(null, "A empty textfiled has been detected\nPlease fill with correct information");
-        }
-
-
-    @FXML
     private void VerifyInput(){
-        Scanner stdin = new Scanner(System.in);
-        if ( creditcardnumber_field.getText().isEmpty()== false ||  exp_date_field.getText().isEmpty()== false || securitycode_field.getText().isEmpty()== false){
+        if ( creditcardnumber_field.getText().isEmpty()== true ||  exp_date_field.getText().isEmpty()== true || securitycode_field.getText().isEmpty()== true){
             JOptionPane.showMessageDialog(null, "Please enter a valid input");
         }
+
     }
 
     @FXML
-    private void ConfirmButtonAction(){
+    private void ConfirmButtonAction() throws SQLException, MessagingException {
         VerifyInput();
-
+        Connection con = getConnection();
+        PreparedStatement strUpdate = con.prepareStatement("UPDATE user set CCBalance= CCBalance-2000 where name=" + "'" + fullname_field.getText() + "'");
+        System.out.println("The SQL statement is: " + strUpdate + "\n");
+        strUpdate.executeUpdate();
+        sendMail_Billing_Informations();
+        JOptionPane.showMessageDialog(null, "Hi mr/mrs " + fullname_field.getText() + "\nAn email has been sent to " + email_field + "\nwith all the relative billing information\nHave a nice day");
         Stage stage = (Stage) confirm_btn.getScene().getWindow();
         stage.close();
     }
@@ -77,6 +81,56 @@ public class PaymentSystem {
         Stage stage = (Stage) cancel_btn.getScene().getWindow();
         // do what you have to do
         stage.close();
+    }
+
+    public void sendMail_Billing_Informations() throws MessagingException, SQLException {
+        System.out.println("Preparing to send email");
+        Properties properties = new Properties();
+
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.office365.com");
+        properties.put("mail.smtp.port", "587");
+
+        String MyAccountEmail = "comeonapp@outlook.com";
+        String password = "easypass123";
+
+
+        Session session = Session.getInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(MyAccountEmail, password);
+            }
+        });
+
+        String dest_addr = email_field.getText();
+        if (dest_addr.isEmpty()){
+            JOptionPane.showMessageDialog(null,"Destination address Error-> Please make sure that the address textbox is not empty and that you have entered a valid e-mail address");
+        }
+        Message message = prepareMessage(session, MyAccountEmail , dest_addr);
+        Transport.send(message);
+        System.out.println("Message sent successfully");
+
+    }
+
+    private static Message prepareMessage(Session session, String MyAccountEmail, String dest_addr) throws SQLException {
+        try {
+            Connection con = getConnection();
+
+            System.out.println("Recipient address " + dest_addr + "\n");
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(MyAccountEmail));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(dest_addr));
+            message.setSubject("Sailer Club - Billing Notification");
+            String htmlCode = "<h1> <font size=5 face=\"verdana\"  color=\"#008000\">Billing Informations </font> </h1> <h2>  Hello " + dest_addr + ",<br> You have successfully renewd your membership as 'Normal Membership' <br>Your credit balance has been charged 2000 € <br>Your have 365 days remaining until expiration, <br>Have a nice day,<br>Sailer Admin </h2>";
+            message.setContent(htmlCode, "text/html");
+            return message;
+
+
+        } catch (MessagingException e) {
+            Logger.getLogger(Members_ManagementControllerClass.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return null;
     }
 
 

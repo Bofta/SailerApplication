@@ -11,17 +11,21 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.Properties;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.*;
 
 import static com.example.sailerapplication.DBConnector.getConnection;
@@ -65,6 +69,9 @@ public class Clubfees_ControllerClass implements Initializable {
 
     @FXML
     private TextField name_textfield;
+
+    @FXML
+    private TextField email_field;
 
 
     ObservableList<Activity> oblist3 = FXCollections.observableArrayList();
@@ -156,27 +163,22 @@ public class Clubfees_ControllerClass implements Initializable {
             }
         }
     }
+
+    public void pay_Parking_fees(ActionEvent event) throws IOException, SQLException {
+
+        Connection con = getConnection();
+
+        PreparedStatement strUpdate = con.prepareStatement("UPDATE user set CCBalance= CCBalance-1000 where name=" + "'" + name_textfield.getText() + "'");
+        System.out.println("The SQL statement is: " + strUpdate + "\n");
+        strUpdate.executeUpdate();
+        JOptionPane.showMessageDialog(null, "Socio " + name_textfield.getText() + " Has payed 1000€ as parking fees for his boats\nRefresh the page clicking on club fees section button to display changes");
+    }
+
+
+
+
+
 }
 
-
-
-        /**
-        try {
-            String sql = "INSERT INTO boat"
-                    + "(id, name, Status)"
-                    + "VALUES (?,?,?)";
-            Connection con = getConnection();
-            pst = con.prepareStatement(sql);
-            pst.setString(1, boatid_textfield.getText());
-            pst.setString(2, boatname_textfield.getText());
-            pst.setString(3, boat_status_textfield.getText());
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Inserted successfully(Click on boats and challenges sections button to refresh the page\nand display the new changes)");
-
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex);
-        }
-         */
 
 

@@ -10,29 +10,28 @@
 
 <Pane maxHeight="600.0" maxWidth="800.0" prefHeight="480.0" prefWidth="616.0" stylesheets="@../../../../../Desktop/ProjectMayhem/table.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sailerapplication.Clubfees_ControllerClass">
     <children>
-      <Button fx:id="membership_btn" layoutX="70.0" layoutY="396.0" mnemonicParsing="false" onAction="#check_Membership_Status" prefHeight="30.0" prefWidth="135.0" text="Membership fees" />
-      <TextField fx:id="name_textfield" layoutX="192.0" layoutY="324.0" prefHeight="26.0" prefWidth="85.0" promptText="Name" />
-      <Text layoutX="118.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name      :" wrappingWidth="73.9453125" />
-      <Text fill="#5e430d" layoutX="118.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N.B : " />
-      <Button fx:id="parkingquota_btn" layoutX="241.0" layoutY="396.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="135.0" text="Parking Quota" />
-      <Button fx:id="iscrizionegara_btn" layoutX="412.0" layoutY="396.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="135.0" text="Iscrizione Gara" />
-      <TableView fx:id="Challenge_table" layoutY="162.0" prefHeight="128.0" prefWidth="634.0">
+      <Button fx:id="membership_btn" layoutX="132.0" layoutY="347.0" mnemonicParsing="false" onAction="#check_Membership_Status" prefHeight="30.0" prefWidth="135.0" text="Membership fees" />
+      <TextField fx:id="name_textfield" layoutX="190.0" layoutY="275.0" prefHeight="26.0" prefWidth="85.0" promptText="Name" />
+      <Text layoutX="116.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name      :" wrappingWidth="73.9453125" />
+      <Text fill="#5e430d" layoutX="74.0" layoutY="403.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N.B :  put the name of the user or challenge in the text box and click on function to start the function  Refresh the page clicking on club fees section button after using any function to display changes " wrappingWidth="466.3459358215332" />
+      <Button fx:id="parkingquota_btn" layoutX="323.0" layoutY="347.0" mnemonicParsing="false" onAction="#pay_Parking_fees" prefHeight="30.0" prefWidth="135.0" text="Parking Quota" />
+      <TableView fx:id="Challenge_table" layoutY="112.0" prefHeight="128.0" prefWidth="658.0">
          <columns>
             <TableColumn fx:id="col_challenge_clubfees" prefWidth="226.4000244140625" text="Challenge" />
             <TableColumn fx:id="col_prize_clubfees" prefWidth="164.0" text="Prize" />
             <TableColumn fx:id="col_participants" prefWidth="224.0" text="Participants" />
          </columns>
       </TableView>
-      <TextField fx:id="challenge_textfield" layoutX="413.0" layoutY="324.0" prefHeight="26.0" prefWidth="85.0" promptText="Challenge" />
-      <Text layoutX="327.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Challenge :" />
-      <TableView fx:id="table" prefHeight="159.0" prefWidth="634.0">
+      <TextField fx:id="challenge_textfield" layoutX="411.0" layoutY="275.0" prefHeight="26.0" prefWidth="85.0" promptText="Challenge" />
+      <Text layoutX="325.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Challenge :" />
+      <TableView fx:id="table" layoutY="-96.0" prefHeight="159.0" prefWidth="658.0">
          <columns>
             <TableColumn fx:id="col_sname" prefWidth="96.00006103515625" text="sname" />
             <TableColumn fx:id="col_surname" minWidth="0.0" prefWidth="83.20001220703125" text="Surname" />
             <TableColumn fx:id="col_fiscal_code" minWidth="0.0" prefWidth="100.800048828125" text="Fiscal code" />
             <TableColumn fx:id="col_address" minWidth="0.0" prefWidth="87.20001220703125" text="Address" />
             <TableColumn fx:id="col_CCBalance" minWidth="0.0" prefWidth="116.79998779296875" text="Credit Card balance" />
-            <TableColumn fx:id="col_membership_status" minWidth="0.0" prefWidth="128.00003051757812" text="Membership_status" />
+            <TableColumn fx:id="col_membership_status" minWidth="0.0" prefWidth="170.00003051757812" text="Membership_status" />
          </columns>
       </TableView>
     </children>
