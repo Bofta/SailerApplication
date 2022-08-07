@@ -47,6 +47,7 @@ public class Database_CRUD_Operations {
             String drop_user = "drop table if exists user";
             String drop_boat = "drop table if exists boat";
             String drop_challenges = "drop table if exists challenges";
+            String drop_payment = "drop table if exists payment";
 
 
             Statement stmt = con.createStatement();
@@ -55,6 +56,7 @@ public class Database_CRUD_Operations {
             stmt.executeUpdate(drop_user);
             stmt.executeUpdate(drop_boat);
             stmt.executeUpdate(drop_challenges);
+            stmt.executeUpdate(drop_payment);
 
 
             PreparedStatement create_table_admin = con.prepareStatement("CREATE TABLE IF NOT EXISTS admin(id int(11) NOT NULL AUTO_INCREMENT" +
@@ -66,7 +68,7 @@ public class Database_CRUD_Operations {
                     ", surname char(32) NOT NULL" +
                     ", username varchar(32) NOT NULL" +
                     ", password varchar(32) NOT NULL" +
-                    ", address varchar(32) NOT NULL" +
+                    ", address varchar(80) NOT NULL" +
                     ", fiscal_code varchar(32) NOT NULL" +
                     ", CCBalance double NOT NULL" +
                     ", membership_status char(32)" +
@@ -80,13 +82,21 @@ public class Database_CRUD_Operations {
             PreparedStatement create_table_boat = con.prepareStatement("CREATE TABLE IF NOT EXISTS boat(id int(10) NOT NULL AUTO_INCREMENT" +
                     ", name varchar(32) NOT NULL" +
                     ", Status char(20) NOT NULL" +
-                    ", owner varchar(20) " +
+                    ", owner varchar(80) " +
+                    ", length int(11) " +
                     ", PRIMARY KEY(id))");
+
+            PreparedStatement create_table_payment = con.prepareStatement("CREATE TABLE IF NOT EXISTS payment(title varchar(100)" +
+                    ", date int(100) " +
+                    ", payer varchar(100) " +
+                    ", PRIMARY KEY(title))");
+
 
             create_table_admin.executeUpdate();
             create_table_user.executeUpdate();
             create_table_challenges.executeUpdate();
             create_table_boat.executeUpdate();
+            create_table_payment.executeUpdate();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -123,13 +133,13 @@ public class Database_CRUD_Operations {
             Connection con = getConnection();
 
             PreparedStatement posted_user1 = con.prepareStatement("INSERT INTO user (name, surname , username , password , address , fiscal_code , CCBalance , membership_status)" +
-                                                                                " VALUES ('montasser', 'ben rejeb', 'devops', 'opsdev', 'montassar367@gmail.com', 'XXXX','5000','active')");
+                                                                                " VALUES ('Montasser', 'Ben rejeb', 'test', 'test', 'montassar.benrejeb@studenti.unipr.it', 'BNRMTS98','5000','inactive')");
 
             PreparedStatement posted_user2 = con.prepareStatement("INSERT INTO user (name, surname , username , password , address , fiscal_code, CCBalance, membership_status) " +
-                                                                                " VALUES ('Mohamed', 'Touati', 'user', 'user', 'Achref15@gmail.com', 'YYYY','5000','active')");
+                                                                                " VALUES ('Mario', 'Rossi', 'user', 'user', 'mario.rossi@studenti.unipr.it', 'MAROSSI95','5000','inactive')");
 
             PreparedStatement posted_user3 = con.prepareStatement("INSERT INTO user (name, surname , username , password , address , fiscal_code, CCBalance , membership_status)" +
-                                                                                " VALUES ('Mohammed', 'Achref Touil', 'Mohamed93', 'Achref-1234', 'Hama87@gmail.com', 'ZZZZ','5000','inactive')");
+                                                                                " VALUES ('Wajdi', 'Lajdal', 'wes', 'Wajdi1234', 'wajdi.lajdal@studenti.unipr.it', 'WALJD97','5000','active')");
             posted_user1.executeUpdate();
             posted_user2.executeUpdate();
             posted_user3.executeUpdate();
@@ -161,9 +171,9 @@ public class Database_CRUD_Operations {
          */
         try {
             Connection con = getConnection();
-            PreparedStatement posted_Boat1 = con.prepareStatement("INSERT INTO boat (id, name, Status, owner) VALUES ('1','Tanit','AVAILABLE','NULL')");
-            PreparedStatement posted_Boat2 = con.prepareStatement("INSERT INTO boat (id, name, Status, owner) VALUES ('2','Cartago','AVAILABLE','NULL')");
-            PreparedStatement posted_Boat3 = con.prepareStatement("INSERT INTO boat (id, name, Status, owner) VALUES ('3','Yacht','AVAILABLE','NULL')");
+            PreparedStatement posted_Boat1 = con.prepareStatement("INSERT INTO boat (id, name, Status, owner, length) VALUES ('1','Tanit','AVAILABLE','BNRMTS98',7)");
+            PreparedStatement posted_Boat2 = con.prepareStatement("INSERT INTO boat (id, name, Status, owner, length) VALUES ('2','Cartago','AVAILABLE','MAROSSI95',12)");
+            PreparedStatement posted_Boat3 = con.prepareStatement("INSERT INTO boat (id, name, Status, owner, length) VALUES ('3','Yacht','AVAILABLE','WALJD97',18)");
             posted_Boat1.executeUpdate();
             posted_Boat2.executeUpdate();
             posted_Boat3.executeUpdate();
@@ -173,7 +183,7 @@ public class Database_CRUD_Operations {
         }
 
         finally {
-            System.out.println("TABLES 'admin' , 'user' , 'challenges' , 'boat' have been successfully populated!\n");
+            System.out.println("TABLES 'admin' , 'user' , 'challenges' , 'boat', 'payment' have been successfully populated!\n");
         }
 
     }

@@ -6,13 +6,15 @@ public class Boat {
     private String name;
     private String Status;
     private String owner;
+    private int length;
 
 
-    public Boat(int id , String name , String Status , String owner) {
+    public Boat(int id , String name , String Status , String owner, int length) {
         this.id = id;
         this.name = name;
         this.Status = Status;
         this.owner = owner;
+        this.length = length;
     }
 
     /**
@@ -49,5 +51,13 @@ public class Boat {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
     }
 }

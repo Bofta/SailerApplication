@@ -1,7 +1,5 @@
 package com.example.sailerapplication;
 
-import java.util.Arrays;
-
 /**
  * Activity is in charge of saving a activity object with its properties.
  * Every activity has a name and an array of person registered for the activity.
@@ -14,6 +12,7 @@ public class Activity {
     private String name;
     private int prize;
     private int participants;
+    private int length;
     /*
     private Person[] registered;
     */
@@ -28,10 +27,11 @@ public class Activity {
      * @param participants
      */
 
-    public Activity(String name, int prize , int participants) {
+    public Activity(String name, int prize, int participants) {
         this.name = name;
         this.prize = prize;
         this.participants = participants;
+        this.length = length;
     }
 
 

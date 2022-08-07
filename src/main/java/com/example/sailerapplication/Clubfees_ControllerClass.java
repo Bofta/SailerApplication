@@ -17,15 +17,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Properties;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.swing.*;
 
 import static com.example.sailerapplication.DBConnector.getConnection;
@@ -37,6 +29,9 @@ public class Clubfees_ControllerClass implements Initializable {
 
     @FXML
     private TableColumn<Socio, String> col_address;
+
+    @FXML
+    private TextField date_field;
 
     @FXML
     private TableColumn<Socio, String> col_fiscal_code;
@@ -154,7 +149,7 @@ public class Clubfees_ControllerClass implements Initializable {
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PaymentSystem.fxml"));
                     Parent root1 = (Parent) fxmlLoader.load();
                     Stage stage = new Stage();
-                    stage.setTitle("Membership payment window");
+                    stage.setTitle("Membership payment");
                     stage.setScene(new Scene(root1));
                     stage.show();
                 }
@@ -164,18 +159,35 @@ public class Clubfees_ControllerClass implements Initializable {
         }
     }
 
-    public void pay_Parking_fees(ActionEvent event) throws IOException, SQLException {
+    public void SignUp_Socio_to_challenge_function(ActionEvent e) throws SQLException, IOException {
 
         Connection con = getConnection();
+            PreparedStatement strUpdate = con.prepareStatement("UPDATE challenges set participants= participants + 1   where name=" + "'" + col_challenge_clubfees.getText() + "'");
+            System.out.println("The SQL statement is: " + strUpdate + "\n");
+            strUpdate.executeUpdate();
 
-        PreparedStatement strUpdate = con.prepareStatement("UPDATE user set CCBalance= CCBalance-1000 where name=" + "'" + name_textfield.getText() + "'");
-        System.out.println("The SQL statement is: " + strUpdate + "\n");
-        strUpdate.executeUpdate();
-        JOptionPane.showMessageDialog(null, "Socio " + name_textfield.getText() + " Has payed 1000€ as parking fees for his boats\nRefresh the page clicking on club fees section button to display changes");
+            JOptionPane.showMessageDialog(null, "Client " + name_textfield.getText() + " You will be redirected to payment window\nTo pay participation fees to challenge");
+            Alert PayingMembership = new Alert(Alert.AlertType.CONFIRMATION);
+            PayingMembership.setHeaderText("Participation payment");
+            PayingMembership.setContentText("Proceed with participation payment?");
+        if (PayingMembership.showAndWait().get() == ButtonType.OK) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("PaymentSystem.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("participation payment");
+            stage.setScene(new Scene(root1));
+            stage.show();
+
+        }
     }
 
-
-
+    public void unsubscribe_socio_from_challenge_function(ActionEvent e) throws SQLException {
+        Connection con = getConnection();
+        PreparedStatement strUpdate = con.prepareStatement("UPDATE challenges set participants= participants - 1   where name=" + "'" + col_challenge_clubfees.getText() + "'");
+        System.out.println("The SQL statement is: " + strUpdate + "\n");
+        strUpdate.executeUpdate();
+        JOptionPane.showMessageDialog(null, "Socio " + name_textfield.getText() + " Has been removed from the specified challenge\nGood Luck in your next challenge\nRefresh the page clicking on B&C button to display changes");
+    }
 
 
 }

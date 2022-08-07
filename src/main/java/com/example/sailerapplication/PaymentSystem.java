@@ -24,6 +24,9 @@ import static com.example.sailerapplication.DBConnector.getConnection;
 public class PaymentSystem {
 
     @FXML
+    private TextField date_field;
+
+    @FXML
     private Button confirm_btn;
 
     @FXML
@@ -66,11 +69,11 @@ public class PaymentSystem {
     private void ConfirmButtonAction() throws SQLException, MessagingException {
         VerifyInput();
         Connection con = getConnection();
-        PreparedStatement strUpdate = con.prepareStatement("UPDATE user set CCBalance= CCBalance-2000 where name=" + "'" + fullname_field.getText() + "'");
+        PreparedStatement strUpdate = con.prepareStatement("UPDATE user set CCBalance= CCBalance-2000 where name=" + "'" + firstname_field.getText() + "'");
         System.out.println("The SQL statement is: " + strUpdate + "\n");
         strUpdate.executeUpdate();
         sendMail_Billing_Informations();
-        JOptionPane.showMessageDialog(null, "Hi mr/mrs " + fullname_field.getText() + "\nAn email has been sent to " + email_field + "\nwith all the relative billing information\nHave a nice day");
+        JOptionPane.showMessageDialog(null, "Hi Mr/Ms " + fullname_field.getText() + "\nAn email has been sent to " + email_field.getText() + "\nwith all the relative billing information\nHave a nice day");
         Stage stage = (Stage) confirm_btn.getScene().getWindow();
         stage.close();
     }
@@ -95,7 +98,6 @@ public class PaymentSystem {
         String MyAccountEmail = "comeonapp@outlook.com";
         String password = "easypass123";
 
-
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -110,6 +112,9 @@ public class PaymentSystem {
         Message message = prepareMessage(session, MyAccountEmail , dest_addr);
         Transport.send(message);
         System.out.println("Message sent successfully");
+        Connection con = getConnection();
+        PreparedStatement posted_parkingFees_notification = con.prepareStatement("INSERT INTO payment (title, date , payer) VALUES ('transaction trace','" + date_field.getText() + "','"+fullname_field.getText() + "')");
+        posted_parkingFees_notification.executeUpdate();
 
     }
 
@@ -122,7 +127,7 @@ public class PaymentSystem {
             message.setFrom(new InternetAddress(MyAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(dest_addr));
             message.setSubject("Sailer Club - Billing Notification");
-            String htmlCode = "<h1> <font size=5 face=\"verdana\"  color=\"#008000\">Billing Informations </font> </h1> <h2>  Hello " + dest_addr + ",<br> You have successfully renewd your membership as 'Normal Membership' <br>Your credit balance has been charged 2000 € <br>Your have 365 days remaining until expiration, <br>Have a nice day,<br>Sailer Admin </h2>";
+            String htmlCode = "<h1> <font size=5 face=\"verdana\"  color=\"#008000\">Billing Informations </font> </h1> <h2>  Hello " + dest_addr + ",<br> You have successfully payed a transaction <br>Your credit balance has been charged <br>Don't forget to check your membership status, parking fees in your app B&C section, <br>Have a nice day,<br>Sailer Admin </h2>";
             message.setContent(htmlCode, "text/html");
             return message;
 
