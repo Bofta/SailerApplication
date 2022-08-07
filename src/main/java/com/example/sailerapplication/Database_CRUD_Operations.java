@@ -84,6 +84,7 @@ public class Database_CRUD_Operations {
                     ", Status char(20) NOT NULL" +
                     ", owner varchar(80) " +
                     ", length int(11) " +
+                    ", owner_name varchar(100) " +
                     ", PRIMARY KEY(id))");
 
             PreparedStatement create_table_payment = con.prepareStatement("CREATE TABLE IF NOT EXISTS payment(title varchar(100)" +
@@ -171,9 +172,9 @@ public class Database_CRUD_Operations {
          */
         try {
             Connection con = getConnection();
-            PreparedStatement posted_Boat1 = con.prepareStatement("INSERT INTO boat (id, name, Status, owner, length) VALUES ('1','Tanit','AVAILABLE','BNRMTS98',7)");
-            PreparedStatement posted_Boat2 = con.prepareStatement("INSERT INTO boat (id, name, Status, owner, length) VALUES ('2','Cartago','AVAILABLE','MAROSSI95',12)");
-            PreparedStatement posted_Boat3 = con.prepareStatement("INSERT INTO boat (id, name, Status, owner, length) VALUES ('3','Yacht','AVAILABLE','WALJD97',18)");
+            PreparedStatement posted_Boat1 = con.prepareStatement("INSERT INTO boat (id, name, Status, owner, length, owner_name) VALUES ('1','Tanit','AVAILABLE','BNRMTS98',7,'Montasser')");
+            PreparedStatement posted_Boat2 = con.prepareStatement("INSERT INTO boat (id, name, Status, owner, length, owner_name) VALUES ('2','Cartago','AVAILABLE','MAROSSI95',12,'Mario')");
+            PreparedStatement posted_Boat3 = con.prepareStatement("INSERT INTO boat (id, name, Status, owner, length, owner_name) VALUES ('3','Yacht','AVAILABLE','WALJD97',18,'Wajdi')");
             posted_Boat1.executeUpdate();
             posted_Boat2.executeUpdate();
             posted_Boat3.executeUpdate();

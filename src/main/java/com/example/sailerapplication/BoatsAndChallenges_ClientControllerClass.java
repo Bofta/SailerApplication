@@ -22,9 +22,8 @@ public class BoatsAndChallenges_ClientControllerClass implements Initializable {
     @FXML
     private TableView<Socio> table;
 
-
     @FXML
-    private TextField date_field;
+    private TableColumn<?, ?> col_boat_owner;
 
     @FXML
     private TableColumn<Socio, String> col_address;
@@ -32,15 +31,12 @@ public class BoatsAndChallenges_ClientControllerClass implements Initializable {
     @FXML
     private TableColumn<Socio, String> col_fiscal_code;
 
-    @FXML
-    private TableColumn<Activity, Integer> col_participants;
 
     @FXML
     private TableColumn<Socio, String> col_sname;
 
     @FXML
     private TableColumn<Socio, String> col_membership_status;
-
 
     @FXML
     private TableColumn<Socio, Integer> col_CCBalance;
@@ -49,25 +45,7 @@ public class BoatsAndChallenges_ClientControllerClass implements Initializable {
     private TableColumn<Socio, String> col_surname;
 
     @FXML
-    private TableView<Activity> Challenge_table;
-
-    @FXML
-    private TableColumn<Activity, String> col_challenge_clubfees;
-
-
-    @FXML
-    private TableColumn<Activity, Integer> col_prize_clubfees;
-
-    @FXML
-    private TextField name_textfield;
-
-
-
-    @FXML
     private TableColumn<Boat, Integer> col_boat_length;
-
-    @FXML
-    private TableColumn<Boat, String> col_boat_owner;
 
     @FXML
     private TableColumn<Boat, String> col_Status_boat_client;
@@ -109,7 +87,7 @@ public class BoatsAndChallenges_ClientControllerClass implements Initializable {
         try {
             ResultSet rs1 = con.createStatement().executeQuery("SELECT * from boat");
             while (rs1.next()) {
-                oblist1.add(new Boat(rs1.getInt("id"), rs1.getString("name"), rs1.getString("Status") , rs1.getString("owner") , rs1.getInt("length")));
+                oblist1.add(new Boat(rs1.getInt("id"), rs1.getString("name"), rs1.getString("Status") , rs1.getString("owner") , rs1.getInt("length") , rs1.getString("owner_name")));
             }
         } catch (
                 SQLException e) {
@@ -133,6 +111,7 @@ public class BoatsAndChallenges_ClientControllerClass implements Initializable {
         col_Status_boat_client.setCellValueFactory(new PropertyValueFactory<>("Status"));
         col_boat_owner.setCellValueFactory(new PropertyValueFactory<>("owner"));
         col_boat_length.setCellValueFactory(new PropertyValueFactory<>("length"));
+        col_boat_owner.setCellValueFactory(new PropertyValueFactory<>("owner_name"));
 
         col_sname.setCellValueFactory(new PropertyValueFactory<>("name"));
         col_surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
@@ -153,7 +132,7 @@ public class BoatsAndChallenges_ClientControllerClass implements Initializable {
 
 
     /**
-     * Function that add a boat as a socio Membership
+     * Function that add a boat as a socio property
      * @param event
      * @throws IOException
      * @throws SQLException
@@ -165,9 +144,10 @@ public class BoatsAndChallenges_ClientControllerClass implements Initializable {
           Connection con = getConnection();
 
           PreparedStatement strUpdate = con.prepareStatement("UPDATE boat b , user u "
-                  + " SET b.owner = u.fiscal_code"
+                  + " SET b.owner = u.fiscal_code,"
+                  + " b.owner_name = u.name"
                   + " WHERE b.Status= 'AVAILABLE'"
-                  + " AND u.name='" +username_boats_textfield.getText()
+                  + " AND u.name='" + username_boats_textfield.getText()
                   + "' AND b.id=" + boat_ID_textfield.getText());
 
           System.out.println("The SQL statement is: " + strUpdate + "\n");
@@ -177,7 +157,7 @@ public class BoatsAndChallenges_ClientControllerClass implements Initializable {
 
 
     /**
-     * Function that add a boat as a socio Membership
+     * Function that remove a boat from a socio property
      * @param event
      * @throws IOException
      * @throws SQLException
@@ -196,7 +176,8 @@ public class BoatsAndChallenges_ClientControllerClass implements Initializable {
 
         Connection con = getConnection();
 
-        PreparedStatement strUpdate = con.prepareStatement("UPDATE user u, boat b set u.CCBalance= u.CCBalance-(b.length*50) where u.name=" + "'" + username_boats_textfield.getText() + "'");
+        PreparedStatement strUpdate = con.prepareStatement("UPDATE user u, boat b set u.CCBalance= u.CCBalance-(b.length*50) where u.name=" + "'" + username_boats_textfield.getText()
+                + "' AND b.id=" + boat_ID_textfield.getText());
 
         System.out.println("The SQL statement is: " + strUpdate + "\n");
         strUpdate.executeUpdate();

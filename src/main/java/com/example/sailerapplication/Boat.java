@@ -7,14 +7,16 @@ public class Boat {
     private String Status;
     private String owner;
     private int length;
+    private String owner_name;
 
 
-    public Boat(int id , String name , String Status , String owner, int length) {
+    public Boat(int id , String name , String Status , String owner, int length ,  String owner_name) {
         this.id = id;
         this.name = name;
         this.Status = Status;
         this.owner = owner;
         this.length = length;
+        this.owner_name = owner_name;
     }
 
     /**
@@ -59,5 +61,13 @@ public class Boat {
 
     public void setLength(int length) {
         this.length = length;
+    }
+
+    public String getOwner_name() {
+        return owner_name;
+    }
+
+    public void setOwner_name(String owner_name) {
+        this.owner_name = owner_name;
     }
 }

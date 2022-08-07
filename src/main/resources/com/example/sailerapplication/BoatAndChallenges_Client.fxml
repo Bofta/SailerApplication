@@ -19,11 +19,12 @@
         </Label>
         <TableView fx:id="table1" layoutX="4.0" layoutY="-142.0" prefHeight="183.0" prefWidth="690.0">
             <columns>
-                <TableColumn fx:id="col_name_boat" minWidth="0.0" prefWidth="134.40002155303955" text="Boat Name" />
-                <TableColumn fx:id="col_ID_boat" prefWidth="122.40003967285156" text="Boat ID" />
-                <TableColumn fx:id="col_Status_boat_client" prefWidth="128.7999267578125" text="Boat Status" />
-                <TableColumn fx:id="col_boat_owner" prefWidth="105.5999755859375" text="Boat Owner" />
-            <TableColumn fx:id="col_boat_length" prefWidth="160.79998779296875" text="Length" />
+                <TableColumn fx:id="col_name_boat" minWidth="0.0" prefWidth="105.59997272491455" text="Boat Name" />
+                <TableColumn fx:id="col_ID_boat" prefWidth="64.0" text="Boat ID" />
+                <TableColumn fx:id="col_Status_boat_client" prefWidth="146.3999786376953" text="Boat Status" />
+                <TableColumn fx:id="col_boat_owner" prefWidth="125.60003662109375" text="Boat Owner" />
+            <TableColumn fx:id="col_boat_length" prefWidth="209.5999755859375" text="Length" />
+            <TableColumn fx:id="col_owner_name" minWidth="0.0" prefWidth="0.0" text="owner_name" />
             </columns>
         </TableView>
         <Button fx:id="own_boat_btn" layoutX="104.0" layoutY="135.0" mnemonicParsing="false" onAction="#own_Boat" prefHeight="30.0" prefWidth="85.0" text="Own" />

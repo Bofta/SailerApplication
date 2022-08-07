@@ -88,7 +88,7 @@ public class BoatsAndChallenges_AdminControllerClass implements Initializable {
         try {
             ResultSet rs1 = con.createStatement().executeQuery("SELECT * from boat");
             while (rs1.next()) {
-                oblist1.add(new Boat(rs1.getInt("id"), rs1.getString("name") , rs1.getString("Status") , rs1.getString("owner") , rs1.getInt("length")));
+                oblist1.add(new Boat(rs1.getInt("id"), rs1.getString("name") , rs1.getString("Status") , rs1.getString("owner") , rs1.getInt("length") , rs1.getString("owner_name")));
             }
         } catch (
                 SQLException e) {
