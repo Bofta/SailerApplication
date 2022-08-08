@@ -7,9 +7,9 @@ import java.util.ArrayList;
 
 
 /**
- * THIS CLASS CONTAINS ALL CRUD OPERATION (CREATE , READ , UPDATE , DELETE) FOR DATA IN THE DATABASE 'sailclub_db'
- * @author Montasser Ben Rejeb
- * @author Wajdi Lajdal
+ * THIS CLASS CONTAINS ALL CRUD OPERATIONS (CREATE , READ , UPDATE , DELETE) FOR DATA IN THE DATABASE 'sailclub_db'
+ *  @author      Montasser Ben Rejeb <montasser.benrejeb@studenti.unipr.it>
+ *  @author      wajdi.lajdal <wajdi.lajdal@studenti.unipr.it>
  *
  */
 

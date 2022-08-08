@@ -6,6 +6,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 
+
+/**
+ * THIS CLASS CONTAINS THE DATABASE CONNECTOR that permits the connection to the database by authenticating in it trough DB credentials
+ *  @author      Montasser Ben Rejeb <montasser.benrejeb@studenti.unipr.it>
+ *  @author      wajdi.lajdal <wajdi.lajdal@studenti.unipr.it>
+ *
+ */
+
 public class DBConnector {
 
     public static Connection getConnection() throws SQLException {

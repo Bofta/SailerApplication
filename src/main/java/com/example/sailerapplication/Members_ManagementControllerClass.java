@@ -89,6 +89,15 @@ public class Members_ManagementControllerClass implements Initializable {
     ObservableList<Socio> oblist = FXCollections.observableArrayList();
 
 
+
+    /**
+     *  This class containts the functions and is related to the gui to control and verify members informations by th admins
+     *  @author      Montasser Ben Rejeb <montasser.benrejeb@studenti.unipr.it>
+     *  @author      wajdi.lajdal <wajdi.lajdal@studenti.unipr.it>
+     *
+     */
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

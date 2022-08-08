@@ -21,6 +21,15 @@ import javax.swing.*;
 
 import static com.example.sailerapplication.DBConnector.getConnection;
 
+/**
+ *  BoatsAndChallenges_Admin is in charge of Boats and Challenges(Activities) and the B&C section in the application(Gui) in the admin interface.
+ *  This class is responsible for Managing Boats and Challenges of the club.
+ *
+ *  @author      Montasser Ben Rejeb <montasser.benrejeb@studenti.unipr.it>
+ *  @author      wajdi.lajdal <wajdi.lajdal@studenti.unipr.it>
+ */
+
+
 
 public class BoatsAndChallenges_AdminControllerClass implements Initializable {
 

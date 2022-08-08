@@ -19,6 +19,14 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Client_dashboard_ControllerClass is in charge of managing client function related related to gui.
+ * It contains the structure of the GUI of the client and it permits to navigate through different sections of the app
+ *
+ *  @author      Montasser Ben Rejeb <montasser.benrejeb@studenti.unipr.it>
+ *  @author      wajdi.lajdal <wajdi.lajdal@studenti.unipr.it>
+ */
+
 
 public class Client_dashboard_ControllerClass implements Initializable {
 
@@ -35,9 +43,9 @@ public class Client_dashboard_ControllerClass implements Initializable {
     private StackPane contentArea;
 
     @Override
-    public void initialize(URL location , ResourceBundle resources) {
+    public void initialize(URL location , ResourceBundle Gui) {
         try {
-            URL url = new File("src/main/resources/com/example/sailerapplication/Client_dashboardHomePage.fxml").toURI().toURL();
+            URL url = new File("src/main/Gui/com/example/sailerapplication/Client_dashboardHomePage.fxml").toURI().toURL();
             Parent fxml = FXMLLoader.load(url);
             contentArea.getChildren().removeAll();
             contentArea.getChildren().setAll(fxml);
@@ -47,21 +55,21 @@ public class Client_dashboard_ControllerClass implements Initializable {
     }
 
     public void client_homepage(ActionEvent actionEvent) throws IOException{
-        URL url = new File("src/main/resources/com/example/sailerapplication/Client_dashboardHomePage.fxml").toURI().toURL();
+        URL url = new File("src/main/Gui/com/example/sailerapplication/Client_dashboardHomePage.fxml").toURI().toURL();
         Parent fxml = FXMLLoader.load(url);
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
 
     public void Property_management(ActionEvent actionEvent) throws IOException{
-        URL url = new File("src/main/resources/com/example/sailerapplication/BoatAndChallenges_Client.fxml").toURI().toURL();
+        URL url = new File("src/main/Gui/com/example/sailerapplication/BoatAndChallenges_Client.fxml").toURI().toURL();
         Parent fxml = FXMLLoader.load(url);
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
 
     public void Clubfees_FXMLFILE_LOADER_FUNCTION(ActionEvent actionEvent) throws IOException{
-        URL url = new File("src/main/resources/com/example/sailerapplication/Clubfees.fxml").toURI().toURL();
+        URL url = new File("src/main/Gui/com/example/sailerapplication/Clubfees.fxml").toURI().toURL();
         Parent fxml = FXMLLoader.load(url);
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);

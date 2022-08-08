@@ -56,6 +56,15 @@ public class PaymentSystem {
     @FXML
     private TextField username_field;
 
+    /**
+     *  This class is the payment system that store user billing informations and depends of the the type of operation that he did
+     *  then collects all the data and sent it to the database in order to keep track of all payments done by the system
+     *  and to send also a notification to the user whom have done the payment
+     *  @author      Montasser Ben Rejeb <montasser.benrejeb@studenti.unipr.it>
+     *  @author      wajdi.lajdal <wajdi.lajdal@studenti.unipr.it>
+     *
+     */
+
 
     @FXML
     private void VerifyInput(){

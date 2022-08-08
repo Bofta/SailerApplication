@@ -2,14 +2,13 @@ package com.example.sailerapplication;
 
 
 /**
- * Person is in charge of saving a person object with its properties.
+ * Person is in charge of saving a person object and can be inherited by the the admin(personale circolo) or the user(Socio) classes with Parent class properties.
  * Each person has a name, a surname, an username and a password.
  *
- * TODO: Fix the bugs
- *
  * @author      Montasser Ben Rejeb <montasser.benrejeb@studenti.unipr.it>
+ * @author      wajdi.lajdal <wajdi.lajdal@studenti.unipr.it>
+*/
 
- */
 public class Person
 {
     private String sname;

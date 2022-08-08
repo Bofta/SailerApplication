@@ -1,6 +1,15 @@
 package com.example.sailerapplication;
 
 
+/**
+ * Boat class is in charge of boat/yacht class.
+ *
+ *
+ *  @author      Montasser Ben Rejeb <montasser.benrejeb@studenti.unipr.it>
+ *  @author      wajdi.lajdal <wajdi.lajdal@studenti.unipr.it>
+ */
+
+
 public class Boat {
     private int id;
     private String name;

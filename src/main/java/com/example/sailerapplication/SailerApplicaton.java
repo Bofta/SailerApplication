@@ -10,6 +10,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * This is the main class and the entry-point of the application , executing this class will permits the launch of the app GUI
+ *
+ * @author      Montasser Ben Rejeb <montasser.benrejeb@studenti.unipr.it>
+ * @author      wajdi.lajdal <wajdi.lajdal@studenti.unipr.it>
+ */
+
 public class SailerApplicaton extends Application {
 
     private static Stage stg;

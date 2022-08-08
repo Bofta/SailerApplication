@@ -22,6 +22,15 @@ import javax.swing.*;
 
 import static com.example.sailerapplication.DBConnector.getConnection;
 
+
+/**
+ * Clubfees_ControllerClass is in charge of Membership_fees of the clients related to gui.
+ * It contains the functions that permits to pay the socio membership(Quota di associazione) and to signup for a challenge by paying the relative inscription fees
+ *
+ *  @author      Montasser Ben Rejeb <montasser.benrejeb@studenti.unipr.it>
+ *  @author      wajdi.lajdal <wajdi.lajdal@studenti.unipr.it>
+ */
+
 public class Clubfees_ControllerClass implements Initializable {
 
     @FXML

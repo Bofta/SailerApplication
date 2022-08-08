@@ -10,6 +10,16 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+
+/**
+ * THIS CLASS CONTAINS THE LOGIN CONTROLLER which permits to verify the credentials of the persons that wants to connect
+ *  if it connects with admin credentials he will be redirected to the admin dashboard Panel
+ *  else if he connects with users credentials that already exists he will be redirected to the user(Socio) dashboard Panel
+ *  @author      Montasser Ben Rejeb <montasser.benrejeb@studenti.unipr.it>
+ *  @author      wajdi.lajdal <wajdi.lajdal@studenti.unipr.it>
+ *
+ */
+
 public class LoginController {
 
     @FXML

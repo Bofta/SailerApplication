@@ -14,6 +14,14 @@ public class Socio extends Person {
         private double CCBalance; // Acronym for Credit Card Balance.
 
 
+    /**
+     * Socio is a subclass of person. It has some privileges more than Person.
+     *
+     *  @author      Montasser Ben Rejeb <montasser.benrejeb@studenti.unipr.it>
+     *  @author      Omar <@studenti.unipr.it>
+     *
+     */
+
 
         /**
          *  Default constructor with no parameters

@@ -5,7 +5,7 @@ package com.example.sailerapplication;
  * Every activity has a name and an array of person registered for the activity.
  *
  *  @author      Montasser Ben Rejeb <montasser.benrejeb@studenti.unipr.it>
- *  @author      Omar <@studenti.unipr.it>
+ *  @author      wajdi.lajdal <wajdi.lajdal@studenti.unipr.it>
  */
 
 public class Activity {

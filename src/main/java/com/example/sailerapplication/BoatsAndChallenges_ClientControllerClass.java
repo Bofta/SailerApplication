@@ -79,6 +79,16 @@ public class BoatsAndChallenges_ClientControllerClass implements Initializable {
     Database_CRUD_Operations dbo = new Database_CRUD_Operations();
 
 
+    /**
+     *  BoatsAndChallenges_Admin is in charge of Boats and Challenges(Activities) and the B&C section in the application(Gui) in the admin interface.
+     *  Main functions are adding boats (Own/Diwosn) boat and signing up to challenges or unsubscribing from them and also to pay parking fees to the equivalent boat.
+     *
+     *  @author      Montasser Ben Rejeb <montasser.benrejeb@studenti.unipr.it>
+     *  @author      wajdi.lajdal <wajdi.lajdal@studenti.unipr.it>
+     */
+
+
+
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
