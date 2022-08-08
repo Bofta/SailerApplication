@@ -18,7 +18,7 @@ public class Personale_Circolo extends Person
     /**
      * Parametrized Personale_Circolo Constructor.
      */
-    public Personale_Circolo(String name, String surname) {
+    public Personale_Circolo(String name, String surname , String username , String password) {
         super(name, surname);
     }
 
