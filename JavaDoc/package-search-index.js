@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"com.example.sailerapplication","l":"com.example.sailerapplication"}];updateSearchResults();
